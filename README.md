@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,20 +6,19 @@
   <meta name="description" content="B2B Leads Extractor is a desktop software to collect publicly available business information from online map listings and directories, organized in a fast, export-ready table." />
   <style>
     :root{
-      --bg: #0b1220;
-      --bg2:#0f1a30;
-      --card:#111c34;
-      --card2:#0f1930;
-      --text:#e7eefc;
-      --muted:#a7b3cf;
-      --line: rgba(255,255,255,.08);
+      --bg:#0f1420;
+      --bg2:#121a2a;
+      --card: rgba(255,255,255,.05);
+      --card2: rgba(255,255,255,.035);
+      --text:#eaf0ff;
+      --muted:#a8b3cc;
+      --line: rgba(255,255,255,.10);
       --accent:#63b3ff;
       --accent2:#7cffd1;
-      --danger:#ff6b6b;
-      --shadow: 0 10px 40px rgba(0,0,0,.45);
+      --shadow: 0 10px 40px rgba(0,0,0,.40);
       --radius: 18px;
-      --radius2: 24px;
-      --max: 1100px;
+      --radius2: 22px;
+      --max: 1120px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
@@ -31,31 +29,24 @@
       font-family:var(--sans);
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 10% 0%, rgba(99,179,255,.18), transparent 60%),
-        radial-gradient(1000px 650px at 85% 10%, rgba(124,255,209,.14), transparent 55%),
+        radial-gradient(1100px 650px at 8% 0%, rgba(99,179,255,.16), transparent 60%),
+        radial-gradient(1000px 650px at 90% 10%, rgba(124,255,209,.12), transparent 55%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       letter-spacing:.2px;
     }
     a{color:inherit}
+    img{max-width:100%; display:block}
     .wrap{max-width:var(--max); margin:0 auto; padding:24px;}
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; padding:14px 18px; border:1px solid var(--line);
-      background:rgba(17,28,52,.6); backdrop-filter: blur(10px);
+      background:rgba(18,26,42,.55); backdrop-filter: blur(10px);
       border-radius:var(--radius2); box-shadow: var(--shadow);
       position:sticky; top:16px; z-index:20;
     }
-    .brand{display:flex; align-items:center; gap:12px; min-width: 220px;}
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(99,179,255,.9), transparent 55%),
-        radial-gradient(circle at 70% 70%, rgba(124,255,209,.8), transparent 55%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 12px 26px rgba(0,0,0,.35);
-    }
-    .brand h1{font-size:14px; margin:0; font-weight:800; letter-spacing:.6px}
+    .brand{display:flex; align-items:center; gap:12px; min-width: 240px;}
+    .brand img{width:40px; height:40px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04)}
+    .brand h1{font-size:14px; margin:0; font-weight:900; letter-spacing:.6px}
     .brand p{margin:2px 0 0; font-size:12px; color:var(--muted)}
     .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
     .nav a{
@@ -65,26 +56,27 @@
     .nav a:hover{border-color:var(--line); color:var(--text); background: rgba(255,255,255,.03);}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.10);
+      padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
-      color:var(--text); text-decoration:none; font-weight:700; font-size:13px;
+      color:var(--text); text-decoration:none; font-weight:800; font-size:13px;
       transition: transform .08s ease, border-color .12s ease, background .12s ease;
       user-select:none;
+      white-space:nowrap;
     }
     .btn:hover{transform: translateY(-1px); border-color: rgba(99,179,255,.35); background: rgba(99,179,255,.10);}
     .btn.primary{
       background: linear-gradient(135deg, rgba(99,179,255,.95), rgba(124,255,209,.75));
       color:#06101b; border:0;
-      box-shadow: 0 18px 30px rgba(99,179,255,.20);
+      box-shadow: 0 18px 30px rgba(99,179,255,.18);
     }
     .btn.primary:hover{transform: translateY(-1px); filter:brightness(1.02)}
     .hero{
-      padding:44px 0 20px;
-      display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; align-items:stretch;
+      padding:42px 0 18px;
+      display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:stretch;
     }
     .card{
       border:1px solid var(--line);
-      background: rgba(17,28,52,.55);
+      background: rgba(18,26,42,.50);
       border-radius:var(--radius2);
       box-shadow: var(--shadow);
       padding:22px;
@@ -94,56 +86,36 @@
       font-size:38px; line-height:1.1; margin:0 0 12px; letter-spacing:.4px;
     }
     .hero .sub{
-      color:var(--muted); font-size:15px; line-height:1.6; margin:0 0 18px;
+      color:var(--muted); font-size:15px; line-height:1.7; margin:0 0 18px;
     }
     .chips{display:flex; flex-wrap:wrap; gap:10px; margin: 16px 0 18px;}
     .chip{
       font-size:12px; color: rgba(231,238,252,.92);
       padding:8px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
     }
     .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top: 18px;}
-    .note{font-size:12px; color:var(--muted); margin-top:10px;}
-    .side{
-      display:flex; flex-direction:column; gap:16px;
+    .note{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.55;}
+    .side{display:flex; flex-direction:column; gap:14px;}
+    .boxshot{
+      display:grid; grid-template-columns: 1fr; gap:12px;
+      align-items:stretch;
     }
-    .statGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+    .boxshot img{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    }
+    .statGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:10px;}
     .stat{
       padding:14px; border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(15,25,48,.65);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
     }
-    .stat b{display:block; font-size:16px;}
+    .stat b{display:block; font-size:14px;}
     .stat span{display:block; margin-top:6px; font-size:12px; color:var(--muted); line-height:1.45;}
-    .preview{
-      position:relative;
-      border-radius:20px;
-      border:1px dashed rgba(255,255,255,.18);
-      background:
-        radial-gradient(500px 220px at 20% 20%, rgba(99,179,255,.18), transparent 60%),
-        radial-gradient(500px 240px at 85% 20%, rgba(124,255,209,.12), transparent 60%),
-        rgba(15,25,48,.55);
-      min-height: 230px;
-      display:flex; align-items:center; justify-content:center; text-align:center;
-      padding:18px;
-      overflow:hidden;
-    }
-    .preview .ph{
-      max-width: 320px;
-      font-size:12px;
-      color: var(--muted);
-      line-height:1.6;
-    }
-    .preview code{
-      font-family: var(--mono);
-      font-size: 11px;
-      color: rgba(231,238,252,.95);
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      padding: 3px 6px;
-      border-radius: 8px;
-    }
     section{padding: 22px 0;}
     .sectionTitle{
       display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
@@ -155,61 +127,61 @@
     .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px;}
     .tile{
       border:1px solid var(--line);
-      background: rgba(17,28,52,.42);
+      background: rgba(18,26,42,.40);
       border-radius:var(--radius);
       padding:16px;
     }
     .tile h4{margin:0 0 8px; font-size:14px}
-    .tile p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
-    .list{
-      margin: 10px 0 0;
-      padding:0;
-      list-style:none;
-      display:flex; flex-direction:column; gap:10px;
+    .tile p{margin:0; color:var(--muted); font-size:13px; line-height:1.65}
+    .steps{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
     }
-    .li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px 12px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(15,25,48,.55);
-      border-radius: 14px;
+    .shot{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 14px 34px rgba(0,0,0,.28);
     }
-    .dot{
-      width:10px; height:10px; border-radius:999px; margin-top:4px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 4px rgba(99,179,255,.14);
-      flex: 0 0 auto;
-    }
-    .li b{display:block; font-size:13px}
-    .li span{display:block; color:var(--muted); font-size:12.5px; line-height:1.55; margin-top:4px}
-    .kbd{
-      font-family: var(--mono);
-      font-size: 11px;
-      border:1px solid rgba(255,255,255,.10);
-      padding:3px 6px;
-      border-radius: 8px;
-      background: rgba(255,255,255,.04);
-      color: rgba(231,238,252,.95);
-      display:inline-block;
-      margin: 0 3px;
+    .shot .cap{
+      padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,.10);
+      font-size:12px;
+      color:var(--muted);
     }
     .callout{
-      border:1px solid rgba(99,179,255,.20);
+      border:1px solid rgba(99,179,255,.22);
       background: rgba(99,179,255,.08);
       border-radius: var(--radius2);
       padding: 16px;
       color: rgba(231,238,252,.95);
     }
     .callout small{display:block; color: rgba(231,238,252,.82); margin-top:8px; line-height:1.6}
+    .pricing{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    }
+    .plan{
+      border:1px solid var(--line);
+      background: rgba(18,26,42,.45);
+      border-radius: var(--radius2);
+      padding:18px;
+    }
+    .plan h4{margin:0 0 6px; font-size:14px}
+    .plan .tag{display:inline-block; margin:10px 0 0; font-size:12px; color:rgba(231,238,252,.95);
+      border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.03);
+      padding:6px 10px; border-radius:999px;
+    }
+    .plan ul{margin:12px 0 0; padding:0 0 0 16px; color:var(--muted); font-size:13px; line-height:1.65}
+    .plan li{margin:6px 0}
     .faq details{
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(15,25,48,.55);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
       border-radius: 14px;
       padding: 12px 14px;
     }
     .faq details + details{margin-top:10px;}
-    summary{cursor:pointer; font-weight:700; font-size:13px}
-    .faq p{margin: 10px 0 0; color: var(--muted); font-size:13px; line-height:1.6;}
+    summary{cursor:pointer; font-weight:800; font-size:13px}
+    .faq p{margin: 10px 0 0; color: var(--muted); font-size:13px; line-height:1.65;}
     footer{
       margin: 22px 0 28px;
       padding: 18px 0 0;
@@ -218,26 +190,15 @@
       font-size: 12px;
       line-height:1.6;
     }
-    .badgeRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
-    .badge{
-      font-size:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:8px 10px;
-      border-radius: 999px;
-      color: rgba(231,238,252,.92);
-    }
-    .twoCol{
-      display:grid; grid-template-columns: 1fr 1fr; gap: 14px;
-    }
-    .muted{color:var(--muted)}
     @media (max-width: 980px){
-      .hero{grid-template-columns: 1fr; padding-top: 24px;}
+      .hero{grid-template-columns: 1fr; padding-top: 22px;}
       .grid3{grid-template-columns: 1fr;}
       .grid2{grid-template-columns: 1fr;}
-      .twoCol{grid-template-columns: 1fr;}
+      .steps{grid-template-columns: 1fr;}
+      .pricing{grid-template-columns: 1fr;}
       .topbar{position:relative; top:auto;}
       .brand{min-width: unset;}
+      .nav{display:none;}
     }
   </style>
 </head>
@@ -245,22 +206,23 @@
   <div class="wrap">
     <header class="topbar">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <img src="https://b2b-leads-extractor.github.io/logo1.png" alt="B2B Leads Extractor Logo" />
         <div>
           <h1>B2B Leads Extractor</h1>
           <p>Desktop lead collection • fast, structured, export-ready</p>
         </div>
       </div>
+
       <nav class="nav" aria-label="Page navigation">
         <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#email">Email discovery</a>
-        <a href="#performance">Performance</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#pricing">Free Trial / Pro</a>
         <a href="#faq">FAQ</a>
       </nav>
+
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <a class="btn" href="#screenshots">Screenshots</a>
-        <a class="btn primary" href="#download">Download</a>
+        <a class="btn primary" href="#pricing">Get Free Trial</a>
       </div>
     </header>
 
@@ -270,66 +232,55 @@
           <h2>Collect business leads<br/>in a structured table — fast.</h2>
           <p class="sub">
             <b>B2B Leads Extractor</b> is a desktop software designed to collect <b>publicly available</b> business information
-            from online map listings and directories. Results are organized in a clean table for quick review, filtering and export.
+            from online map listings and directories. Results are displayed in a clean table in real time, ready for review and export.
           </p>
 
           <div class="chips" aria-label="Highlights">
             <div class="chip">Business name • Address • Phone</div>
             <div class="chip">Website • Rating (when available)</div>
             <div class="chip">Latitude • Longitude</div>
-            <div class="chip">Fast progressive extraction</div>
+            <div class="chip">Real-time results</div>
             <div class="chip">Optimized for large datasets</div>
           </div>
 
-          <div class="ctaRow" id="download">
-            <a class="btn primary" href="#" onclick="alert('Replace this link with your download URL.'); return false;">Download for Windows</a>
-            <a class="btn" href="#" onclick="alert('Replace this link with your purchase/upgrade URL (optional).'); return false;">Upgrade / License</a>
+          <div class="ctaRow">
+            <a class="btn primary" href="#"
+               onclick="alert('Add your FREE TRIAL download link here.'); return false;">Download FREE TRIAL</a>
+            <a class="btn" href="https://store.payproglobal.com/checkout?products[1][id]=123452" target="_blank" rel="noopener">
+              Buy PRO License (1 Year)
+            </a>
           </div>
 
           <p class="note">
-            Tip: add your real links above. You can also replace the hero text with your final branding (e.g. “Fast B2B Leads Extractor”).
+            PRO license is valid for <b>1 year</b> and removes limits on the amount of data you can extract.
+            (You can edit this text anytime.)
           </p>
         </div>
 
         <div class="side">
-          <div class="card">
+          <div class="card boxshot" aria-label="Boxshot">
             <div class="sectionTitle" style="margin-bottom:10px;">
-              <h3>Built for real-world work</h3>
-              <p>Stable • responsive • export-ready</p>
+              <h3>Product Boxshot</h3>
+              <p>Professional desktop tool</p>
             </div>
-
+            <img src="https://store.payproglobal.com/Content/files/152994/fastb2b.jpg" alt="B2B Leads Extractor Boxshot" />
             <div class="statGrid">
               <div class="stat">
                 <b>Desktop-first</b>
-                <span>Your data stays local. No browser extensions required.</span>
+                <span>Work locally and keep your output under your control.</span>
               </div>
               <div class="stat">
-                <b>Structured output</b>
-                <span>Organized fields ready for CRM, Excel, or analysis.</span>
+                <b>Fast workflow</b>
+                <span>Search → extract → export. Minimal setup.</span>
               </div>
               <div class="stat">
                 <b>Large lists</b>
-                <span>Designed to handle large volumes of results smoothly.</span>
+                <span>Designed to stay responsive even with thousands of leads.</span>
               </div>
               <div class="stat">
                 <b>Optional enrichment</b>
-                <span>Find public emails from websites and contact pages.</span>
+                <span>Email discovery from websites & contact pages (when available).</span>
               </div>
-            </div>
-
-            <div class="badgeRow" aria-label="Badges">
-              <div class="badge">Windows Desktop</div>
-              <div class="badge">CSV / TXT export</div>
-              <div class="badge">Category + Location search</div>
-            </div>
-          </div>
-
-          <div class="preview" id="screenshots">
-            <div class="ph">
-              <b>Screenshot placeholder</b><br/>
-              Drop your images here later.<br/><br/>
-              Suggested sizes: <code>1200×750</code> or <code>1600×900</code><br/>
-              Add multiple screenshots or a carousel.
             </div>
           </div>
         </div>
@@ -338,206 +289,160 @@
       <section id="features">
         <div class="sectionTitle">
           <h3>Key Features</h3>
-          <p>Everything you need to build a usable B2B lead list.</p>
+          <p>Everything you need to build an export-ready B2B lead list.</p>
         </div>
 
         <div class="grid3">
           <div class="tile">
-            <h4>Smart search by category & location</h4>
-            <p>Run targeted searches (e.g., “restaurants in Rome”) and collect business listings into a structured table.</p>
+            <h4>Search by category & location</h4>
+            <p>Run targeted searches and collect business listings into a structured table.</p>
           </div>
           <div class="tile">
-            <h4>Core business fields extracted</h4>
-            <p>Business name, address, phone number, website, rating (when available), plus coordinates for mapping or geo analysis.</p>
+            <h4>Real-time results table</h4>
+            <p>Watch leads appear while extraction runs, then review, filter, and export.</p>
           </div>
           <div class="tile">
-            <h4>Progressive extraction</h4>
-            <p>Results appear as they are collected, so you can monitor progress and review data immediately.</p>
-          </div>
-          <div class="tile">
-            <h4>Export-ready output</h4>
-            <p>Export your results to common formats for Excel, Google Sheets, CRMs and custom pipelines.</p>
+            <h4>Core business fields</h4>
+            <p>Business name, address, phone, website, coordinates, and rating (when available).</p>
           </div>
           <div class="tile">
             <h4>Optional email discovery</h4>
-            <p>Scan business websites and contact pages to locate publicly listed email addresses (where available).</p>
+            <p>Scans websites and contact pages to locate publicly listed email addresses.</p>
+          </div>
+          <div class="tile">
+            <h4>Export-ready output</h4>
+            <p>Save results to common formats for spreadsheets, CRMs, and analysis workflows.</p>
           </div>
           <div class="tile">
             <h4>Designed for large datasets</h4>
-            <p>Optimized UI behavior to keep the app responsive while collecting thousands of leads.</p>
+            <p>Optimized to remain usable and stable while collecting thousands of records.</p>
           </div>
         </div>
 
         <div style="margin-top:14px;" class="callout">
-          <b>What makes it different?</b>
+          <b>Responsible use</b>
           <small>
-            B2B Leads Extractor is a desktop tool focused on speed and reliability. It gathers publicly available business data,
-            shows it in a clean grid, and lets you export it immediately — without relying on heavy browser automation.
+            This software is intended to collect <b>publicly available</b> business information. Users are responsible for complying
+            with applicable laws, website terms, and privacy requirements.
           </small>
         </div>
       </section>
 
-      <section id="how">
+      <section id="screenshots">
         <div class="sectionTitle">
-          <h3>How It Works</h3>
-          <p>Simple workflow, minimal setup.</p>
+          <h3>Screenshots</h3>
+          <p>Step-by-step usage examples (you can add more images later).</p>
         </div>
 
-        <ul class="list">
-          <li class="li">
-            <span class="dot" aria-hidden="true"></span>
-            <div>
-              <b>1) Select a category and location</b>
-              <span>Choose what you need to search (industry/category) and where (city/area/country).</span>
+        <div class="steps">
+          <div class="shot">
+            <img src="https://b2b-leads-extractor.github.io/b1.png" alt="Step 1 — Add location" />
+            <div class="cap">Step 1 — Add location</div>
+          </div>
+          <div class="shot">
+            <img src="https://b2b-leads-extractor.github.io/b2.png" alt="Step 2 — Real-time results table" />
+            <div class="cap">Step 2 — Results are displayed in real time</div>
+          </div>
+          <div class="shot">
+            <img src="https://b2b-leads-extractor.github.io/b3.png" alt="Step 3 — Four steps overview" />
+            <div class="cap">Step 3 — Follow the 4 steps to use the program</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing">
+        <div class="sectionTitle">
+          <h3>FREE TRIAL & PRO License</h3>
+          <p>Choose the option that fits your workflow.</p>
+        </div>
+
+        <div class="pricing">
+          <div class="plan">
+            <h4>FREE TRIAL (Download)</h4>
+            <div class="tag">Try before you buy</div>
+            <ul>
+              <li>Install and test the software on your PC</li>
+              <li>See real-time extraction and exported data format</li>
+              <li>Some limitations may apply (you can edit this text)</li>
+            </ul>
+            <div style="margin-top:14px;">
+              <a class="btn primary" href="#"
+                 onclick="alert('Add your FREE TRIAL download link here.'); return false;">Download FREE TRIAL</a>
             </div>
-          </li>
-          <li class="li">
-            <span class="dot" aria-hidden="true"></span>
-            <div>
-              <b>2) Start extraction</b>
-              <span>The app collects publicly available business listings and adds them to the results table progressively.</span>
+          </div>
+
+          <div class="plan">
+            <h4>PRO License (1 Year)</h4>
+            <div class="tag">Unlimited data extraction</div>
+            <ul>
+              <li>Valid for <b>1 year</b></li>
+              <li><b>No limits</b> on the amount of data you can extract</li>
+              <li>Ideal for heavy usage and large lead lists</li>
+            </ul>
+            <div style="margin-top:14px;">
+              <a class="btn primary" href="https://store.payproglobal.com/checkout?products[1][id]=123452" target="_blank" rel="noopener">
+                Buy PRO License
+              </a>
             </div>
-          </li>
-          <li class="li">
-            <span class="dot" aria-hidden="true"></span>
-            <div>
-              <b>3) Review and export</b>
-              <span>Scan your leads in the table and export in your preferred format for outreach, research, or analysis.</span>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <section id="email">
-        <div class="sectionTitle">
-          <h3>Optional Email Discovery</h3>
-          <p>Enrich leads when websites publish contact emails.</p>
-        </div>
-
-        <div class="twoCol">
-          <div class="tile">
-            <h4>What it does</h4>
-            <p>
-              When enabled, the software can visit the business website and look for publicly listed email addresses,
-              including common “contact” pages (e.g., <span class="kbd">contact</span>, <span class="kbd">contatti</span>, <span class="kbd">kontakt</span>).
-            </p>
           </div>
-          <div class="tile">
-            <h4>Notes</h4>
-            <p>
-              Email discovery depends on what a website publishes. Some sites do not display emails or hide them behind forms.
-              The feature focuses on fast scanning and avoiding long waits on slow websites.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="performance">
-        <div class="sectionTitle">
-          <h3>Performance & Stability</h3>
-          <p>Responsive UI and reliable processing with large lists.</p>
-        </div>
-
-        <div class="grid2">
-          <div class="tile">
-            <h4>Optimized for large volumes</h4>
-            <p>Designed to handle large extraction sessions and maintain stability while results grow into thousands of rows.</p>
-          </div>
-          <div class="tile">
-            <h4>Progressive UI updates</h4>
-            <p>Updates are throttled to keep the app responsive, making it easier to move the window and browse results during extraction.</p>
-          </div>
-        </div>
-
-        <div class="badgeRow" aria-label="System requirements">
-          <div class="badge">Windows 10/11</div>
-          <div class="badge">.NET Desktop App</div>
-          <div class="badge">Recommended: 8GB+ RAM for very large lists</div>
-        </div>
-      </section>
-
-      <section id="usecases">
-        <div class="sectionTitle">
-          <h3>Who It’s For</h3>
-          <p>Built for professionals who need structured data quickly.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="tile">
-            <h4>Sales teams</h4>
-            <p>Build target lists by category and region, export to your CRM, and plan outreach.</p>
-          </div>
-          <div class="tile">
-            <h4>Agencies</h4>
-            <p>Collect leads for clients, segment by location and industry, and run market research.</p>
-          </div>
-          <div class="tile">
-            <h4>Marketers & analysts</h4>
-            <p>Create datasets for analysis, competitors mapping, and business intelligence.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="compliance">
-        <div class="sectionTitle">
-          <h3>Responsible Use</h3>
-          <p>Keep your workflow compliant and respectful.</p>
-        </div>
-
-        <div class="callout" style="border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.04);">
-          <b>Important</b>
-          <small>
-            B2B Leads Extractor is intended to collect <b>publicly available</b> business information. Users are responsible for complying with
-            applicable laws, website terms, and privacy requirements in their country and industry. Always use collected data ethically.
-          </small>
         </div>
       </section>
 
       <section id="faq" class="faq">
         <div class="sectionTitle">
           <h3>FAQ</h3>
-          <p>Quick answers for common questions.</p>
+          <p>Quick answers to common questions.</p>
         </div>
 
         <details>
-          <summary>What data can the software extract?</summary>
-          <p>It can extract business name, address, phone number, website, rating (when available), and geographic coordinates. Fields may vary depending on what is publicly displayed.</p>
+          <summary>What data can B2B Leads Extractor collect?</summary>
+          <p>
+            It can collect business name, address, phone number, website, latitude/longitude, and rating when available.
+            Available fields depend on what is publicly displayed by the source.
+          </p>
         </details>
 
         <details>
-          <summary>Does it work without a browser?</summary>
-          <p>Yes. It’s a desktop application designed to collect data and present it in a local results table without requiring browser extensions.</p>
+          <summary>Does the PRO license remove extraction limits?</summary>
+          <p>
+            Yes. The PRO license (valid for 1 year) removes limits on the amount of data you can extract.
+          </p>
         </details>
 
         <details>
-          <summary>Can it find emails automatically?</summary>
-          <p>The optional email discovery feature scans business websites for publicly listed emails, including typical contact pages. It will not find emails that are not published or are hidden behind forms.</p>
+          <summary>Can it find email addresses?</summary>
+          <p>
+            If enabled, the software can scan business websites and typical contact pages to locate publicly listed email addresses.
+            Some websites do not publish emails or hide them behind forms.
+          </p>
         </details>
 
         <details>
-          <summary>Can I handle thousands of leads?</summary>
-          <p>Yes. The UI is designed to remain usable during extraction, and exports are optimized for structured output. For extremely large lists, using export and external tools (Excel/CRM) is recommended.</p>
+          <summary>Can I extract thousands of leads?</summary>
+          <p>
+            Yes. The software is optimized to remain responsive while processing large lists and displaying results in the table.
+          </p>
         </details>
       </section>
 
       <section id="contact">
         <div class="sectionTitle">
-          <h3>Contact & Support</h3>
-          <p>Replace the details below with your own.</p>
+          <h3>Support</h3>
+          <p>Replace this section with your real support details.</p>
         </div>
 
-        <div class="twoCol">
+        <div class="grid2">
           <div class="tile">
-            <h4>Support</h4>
-            <p class="muted">
-              Email: <a href="mailto:support@example.com">support@example.com</a><br/>
-              Website: <a href="#" onclick="alert('Replace with your website URL.'); return false;">your-website.com</a>
+            <h4>Contact</h4>
+            <p>
+              <span style="color:var(--muted);">Email:</span> <a href="mailto:support@example.com">support@example.com</a><br/>
+              <span style="color:var(--muted);">Website:</span> <a href="#" onclick="alert('Replace with your website URL.'); return false;">your-website.com</a>
             </p>
           </div>
           <div class="tile">
-            <h4>License</h4>
-            <p class="muted">
-              Add your license info here (Free / Pro, trial limitations, upgrade link, etc.).
+            <h4>Notes</h4>
+            <p>
+              You can add screenshots, feature highlights, and a short tutorial video in this page later.
             </p>
           </div>
         </div>
@@ -547,9 +452,7 @@
     <footer>
       <div><b>B2B Leads Extractor</b> — Desktop lead collection software.</div>
       <div>© <span id="year"></span> Your Company. All rights reserved.</div>
-      <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-      </script>
+      <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
     </footer>
   </div>
 </body>
