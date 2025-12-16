@@ -200,6 +200,46 @@
       .brand{min-width: unset;}
       .nav{display:none;}
     }
+	
+	 /* clickable thumbnails */
+  .shot img{
+    cursor: zoom-in;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .shot:hover img{ transform: scale(1.01); filter: brightness(1.03); }
+
+  /* lightbox */
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    display: none;
+    place-items: center;
+    padding: 24px;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+  }
+  .lightbox.open{ display: grid; }
+
+  .lightbox img{
+    max-width: min(1100px, 92vw);
+    max-height: 86vh;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 30px 90px rgba(0,0,0,.55);
+    cursor: zoom-out;
+    background: rgba(255,255,255,.03);
+  }
+
+  .lightbox .hint{
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(255,255,255,.75);
+    user-select: none;
+    text-align: center;
+  }
+  
+  
   </style>
 </head>
 <body>
@@ -238,14 +278,13 @@
           <div class="chips" aria-label="Highlights">
             <div class="chip">Business name • Address • Phone</div>
             <div class="chip">Website • Rating (when available)</div>
-            <div class="chip">Latitude • Longitude</div>
+            <div class="chip">Email Addresses</div>
             <div class="chip">Real-time results</div>
             <div class="chip">Optimized for large datasets</div>
           </div>
 
           <div class="ctaRow">
-            <a class="btn primary" href="#"
-               onclick="alert('Add your FREE TRIAL download link here.'); return false;">Download FREE TRIAL</a>
+            <a class="btn primary" href="https://github.com/b2b-leads-extractor/b2b-leads-extractor.github.io/releases/download/b2b-leads-extractor/B2BExtractor.exe" >Download FREE TRIAL</a>
             <a class="btn" href="https://store.payproglobal.com/checkout?products[1][id]=123452" target="_blank" rel="noopener">
               Buy PRO License (1 Year)
             </a>
@@ -331,23 +370,29 @@
       <section id="screenshots">
         <div class="sectionTitle">
           <h3>Screenshots</h3>
-          <p>Step-by-step usage examples (you can add more images later).</p>
+          <p>Step-by-step usage examples. Click to enlarge!</p>
         </div>
 
-        <div class="steps">
-          <div class="shot">
-            <img src="https://b2b-leads-extractor.github.io/b1.png" alt="Step 1 — Add location" />
-            <div class="cap">Step 1 — Add location</div>
-          </div>
-          <div class="shot">
-            <img src="https://b2b-leads-extractor.github.io/b2.png" alt="Step 2 — Real-time results table" />
-            <div class="cap">Step 2 — Results are displayed in real time</div>
-          </div>
-          <div class="shot">
-            <img src="https://b2b-leads-extractor.github.io/b3.png" alt="Step 3 — Four steps overview" />
-            <div class="cap">Step 3 — Follow the 4 steps to use the program</div>
-          </div>
-        </div>
+   <div class="shot">
+  <img src="https://b2b-leads-extractor.github.io/b1.png"
+       data-full="https://b2b-leads-extractor.github.io/b1.png"
+       alt="Step 1 — Add location" />
+  <div class="cap">Step 1 — Add location</div>
+</div>
+
+<div class="shot">
+  <img src="https://b2b-leads-extractor.github.io/b2.png"
+       data-full="https://b2b-leads-extractor.github.io/b2.png"
+       alt="Step 2 — Real-time results table" />
+  <div class="cap">Step 2 — Results are displayed in real time</div>
+</div>
+
+<div class="shot">
+  <img src="https://b2b-leads-extractor.github.io/b3.png"
+       data-full="https://b2b-leads-extractor.github.io/b3.png"
+       alt="Step 3 — Four steps overview" />
+  <div class="cap">Step 3 — Follow the 4 steps to use the program</div>
+</div>
       </section>
 
       <section id="pricing">
@@ -366,8 +411,7 @@
               <li>Some limitations may apply (you can edit this text)</li>
             </ul>
             <div style="margin-top:14px;">
-              <a class="btn primary" href="#"
-                 onclick="alert('Add your FREE TRIAL download link here.'); return false;">Download FREE TRIAL</a>
+              <a class="btn primary" href="https://github.com/b2b-leads-extractor/b2b-leads-extractor.github.io/releases/download/b2b-leads-extractor/B2BExtractor.exe">Download FREE TRIAL</a>
             </div>
           </div>
 
@@ -435,14 +479,14 @@
           <div class="tile">
             <h4>Contact</h4>
             <p>
-              <span style="color:var(--muted);">Email:</span> <a href="mailto:support@example.com">support@example.com</a><br/>
-              <span style="color:var(--muted);">Website:</span> <a href="#" onclick="alert('Replace with your website URL.'); return false;">your-website.com</a>
+              <span style="color:var(--muted);">Email:</span> <a href="mailto:info@estrattoredati.com">info@estrattoredati.com</a><br/>
+              <span style="color:var(--muted);">Website:</span> <a href="https://www.estrattoredati.com">Estrattoredati.com</a>
             </p>
           </div>
           <div class="tile">
             <h4>Notes</h4>
             <p>
-              You can add screenshots, feature highlights, and a short tutorial video in this page later.
+              
             </p>
           </div>
         </div>
@@ -451,9 +495,53 @@
 
     <footer>
       <div><b>B2B Leads Extractor</b> — Desktop lead collection software.</div>
-      <div>© <span id="year"></span> Your Company. All rights reserved.</div>
+      <div>© <span id="year"></span> Estrattoredati.com. All rights reserved.</div>
       <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
     </footer>
   </div>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+  <div>
+    <img id="lightboxImg" alt="">
+    <div class="hint">Click to close • ESC</div>
+  </div>
+</div>
+<script>
+  (function(){
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+
+    function openLightbox(src, alt){
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // click su qualunque immagine dentro .shot
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('.shot img');
+      if (img){
+        const full = img.getAttribute('data-full') || img.src;
+        openLightbox(full, img.alt);
+        return;
+      }
+      // click sull'overlay o sull'immagine grande => chiude
+      if (e.target === lb || e.target === lbImg) closeLightbox();
+    });
+
+    // ESC chiude
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>
