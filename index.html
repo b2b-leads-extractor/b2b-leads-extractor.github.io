@@ -54,74 +54,15 @@
       padding:8px 10px; border-radius:12px; border:1px solid transparent;
     }
     .nav a:hover{border-color:var(--line); color:var(--text); background: rgba(255,255,255,.03);}
-    
-    /* Language Selector */
-    .lang-selector {
-      position: relative;
-      display: inline-block;
-    }
-    .lang-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      transition: all .12s ease;
-    }
-    .lang-btn:hover {
-      border-color: rgba(99,179,255,.35);
-      background: rgba(99,179,255,.08);
-    }
-    .lang-dropdown {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      margin-top: 8px;
-      min-width: 160px;
-      border: 1px solid var(--line);
-      background: rgba(18,26,42,.95);
-      backdrop-filter: blur(10px);
-      border-radius: 14px;
-      padding: 8px;
-      box-shadow: var(--shadow);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all .2s ease;
-      z-index: 100;
-    }
-    .lang-selector.open .lang-dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .lang-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 12px;
-      transition: all .12s ease;
-    }
-    .lang-option:hover {
-      background: rgba(255,255,255,.08);
-    }
-    .lang-option.active {
-      background: rgba(99,179,255,.15);
-      color: var(--accent);
-    }
-    .lang-flag {
-      font-size: 18px;
-    }
-    
+    .lang-selector {position: relative;display: inline-block;}
+    .lang-btn {display: flex;align-items: center;gap: 6px;padding: 8px 12px;border-radius: 12px;border: 1px solid var(--line);background: rgba(255,255,255,.04);color: var(--text);cursor: pointer;font-size: 12px;font-weight: 600;transition: all .12s ease;}
+    .lang-btn:hover {border-color: rgba(99,179,255,.35);background: rgba(99,179,255,.08);}
+    .lang-dropdown {position: absolute;top: 100%;right: 0;margin-top: 8px;min-width: 160px;border: 1px solid var(--line);background: rgba(18,26,42,.95);backdrop-filter: blur(10px);border-radius: 14px;padding: 8px;box-shadow: var(--shadow);opacity: 0;visibility: hidden;transform: translateY(-10px);transition: all .2s ease;z-index: 100;}
+    .lang-selector.open .lang-dropdown {opacity: 1;visibility: visible;transform: translateY(0);}
+    .lang-option {display: flex;align-items: center;gap: 10px;padding: 10px 12px;border-radius: 10px;cursor: pointer;font-size: 12px;transition: all .12s ease;}
+    .lang-option:hover {background: rgba(255,255,255,.08);}
+    .lang-option.active {background: rgba(99,179,255,.15);color: var(--accent);}
+    .lang-flag {font-size: 18px;}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.12);
@@ -264,136 +205,149 @@
       .grid2{grid-template-columns: 1fr;}
       .steps{grid-template-columns: 1fr;}
       .pricing{grid-template-columns: 1fr;}
-      .topbar{position:relative; top:auto; flex-wrap:wrap;}
-      .brand{min-width:auto;}
-      .nav{width:100%; justify-content:center;}
+      .topbar{position:relative; top:auto;}
+      .brand{min-width: unset;}
+      .nav{display:none;}
     }
-    .lightbox{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.92);
-      backdrop-filter:blur(8px);
-      z-index:9999;
-      opacity:0;
-      visibility:hidden;
-      transition: opacity .18s ease, visibility .18s ease;
-      cursor:zoom-out;
-    }
-    .lightbox.open{opacity:1; visibility:visible;}
-    .lightbox > div{
-      width:100%; height:100%;
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:center;
-      padding:20px;
-    }
-    #lightboxImg{
-      max-width:95%; max-height:90vh;
-      border-radius:12px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.6);
-    }
-    .lightbox .hint{
-      margin-top:16px;
-      color:rgba(255,255,255,.7);
-      font-size:13px;
-    }
+	
+  .shot img{
+    cursor: zoom-in;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .shot:hover img{ transform: scale(1.01); filter: brightness(1.03); }
+
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    display: none;
+    place-items: center;
+    padding: 24px;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+  }
+  .lightbox.open{ display: grid; }
+
+  .lightbox img{
+    max-width: min(1100px, 92vw);
+    max-height: 86vh;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 30px 90px rgba(0,0,0,.55);
+    cursor: zoom-out;
+    background: rgba(255,255,255,.03);
+  }
+
+  .lightbox .hint{
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(255,255,255,.75);
+    user-select: none;
+    text-align: center;
+  }
+  
+  
   </style>
 </head>
 <body>
   <div class="wrap">
     <header class="topbar">
       <div class="brand">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%2363b3ff' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='70' text-anchor='middle' fill='%23fff' font-size='60' font-weight='900'%3EB%3C/text%3E%3C/svg%3E" alt="Logo" />
+        <img src="https://b2b-leads-extractor.github.io/logo1.png" alt="B2B Leads Extractor Logo" />
         <div>
           <h1 data-i18n="brand">B2B Leads Extractor</h1>
-          <p data-i18n="tagline">Desktop lead collection software</p>
+          <p data-i18n="tagline">Desktop lead collection • fast, structured, export-ready</p>
         </div>
       </div>
-      <nav class="nav">
-        <a href="#features" data-i18n="nav.features">Features</a>
-        <a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a>
-        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-        <a href="#faq" data-i18n="nav.faq">FAQ</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
-        
+
+      <nav class="nav" aria-label="Page navigation">
+        <a href="#features" data-i18n="nav1">Features</a>
+        <a href="#screenshots" data-i18n="nav2">Screenshots</a>
+        <a href="#pricing" data-i18n="nav3">Free Trial / Pro</a>
+        <a href="#faq" data-i18n="nav4">FAQ</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;align-items:center;">
         <div class="lang-selector">
           <button class="lang-btn" id="langBtn">
             <span class="lang-flag" id="currentFlag">🇬🇧</span>
-            <span id="currentLang">English</span>
+            <span id="currentLang">EN</span>
           </button>
           <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-option" data-lang="en">
-              <span class="lang-flag">🇬🇧</span>
-              <span>English</span>
-            </div>
-            <div class="lang-option" data-lang="it">
-              <span class="lang-flag">🇮🇹</span>
-              <span>Italiano</span>
-            </div>
-            <div class="lang-option" data-lang="fr">
-              <span class="lang-flag">🇫🇷</span>
-              <span>Français</span>
-            </div>
-            <div class="lang-option" data-lang="de">
-              <span class="lang-flag">🇩🇪</span>
-              <span>Deutsch</span>
-            </div>
-            <div class="lang-option" data-lang="pt">
-              <span class="lang-flag">🇵🇹</span>
-              <span>Português</span>
-            </div>
-            <div class="lang-option" data-lang="es">
-              <span class="lang-flag">🇪🇸</span>
-              <span>Español</span>
-            </div>
-            <div class="lang-option" data-lang="zh">
-              <span class="lang-flag">🇨🇳</span>
-              <span>简体中文</span>
-            </div>
+            <div class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span><span>English</span></div>
+            <div class="lang-option" data-lang="it"><span class="lang-flag">🇮🇹</span><span>Italiano</span></div>
+            <div class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span><span>Français</span></div>
+            <div class="lang-option" data-lang="de"><span class="lang-flag">🇩🇪</span><span>Deutsch</span></div>
+            <div class="lang-option" data-lang="pt"><span class="lang-flag">🇵🇹</span><span>Português</span></div>
+            <div class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span><span>Español</span></div>
+            <div class="lang-option" data-lang="zh"><span class="lang-flag">🇨🇳</span><span>简体中文</span></div>
           </div>
         </div>
-      </nav>
+        <a class="btn" href="#screenshots" data-i18n="btn1">Screenshots</a>
+        <a class="btn primary" href="#pricing" data-i18n="btn2">Get Free Trial</a>
+      </div>
     </header>
 
     <main>
       <div class="hero">
         <div class="card">
-          <h2 data-i18n="hero.title">Collect business leads from online directories</h2>
-          <p class="sub" data-i18n="hero.subtitle">
-            B2B Leads Extractor is a desktop software to extract publicly available business information from map listings
-            and directories, displayed in a fast, organized table you can export immediately.
+          <h2 data-i18n="hero1">Collect business leads<br/>in a structured table — fast.</h2>
+          <p class="sub">
+            <b>B2B Leads Extractor</b> <span data-i18n="hero2">is a desktop software designed to collect <b>publicly available</b> business information from online map listings and directories. Results are displayed in a clean table in real time, ready for review and export.</span>
           </p>
 
-          <div class="chips">
-            <div class="chip" data-i18n="hero.chip1">Windows desktop</div>
-            <div class="chip" data-i18n="hero.chip2">Real-time extraction</div>
-            <div class="chip" data-i18n="hero.chip3">Export-ready</div>
-            <div class="chip" data-i18n="hero.chip4">Optional email discovery</div>
+          <div class="chips" aria-label="Highlights">
+            <div class="chip" data-i18n="chip1">Business name • Full Address</div>
+            <div class="chip" data-i18n="chip2">Official Website URL</div>
+            <div class="chip" data-i18n="chip3">Phone number • Email Addresses</div>
+            <div class="chip" data-i18n="chip4">Real-time results</div>
+            <div class="chip" data-i18n="chip5">Optimized for large datasets</div>
           </div>
 
           <div class="ctaRow">
-            <a class="btn primary" href="https://github.com/b2b-leads-extractor/b2b-leads-extractor.github.io/releases/download/b2b-leads-extractor/B2BExtractor.exe">
-              <span data-i18n="hero.download">Download FREE TRIAL</span>
+            <a class="btn primary" href="https://github.com/b2b-leads-extractor/b2b-leads-extractor.github.io/releases/download/b2b-leads-extractor/B2BExtractor.exe"><span data-i18n="cta1">Download FREE TRIAL</span></a>
+            <a class="btn" href="https://store.payproglobal.com/checkout?products[1][id]=123452" target="_blank" rel="noopener">
+              <span data-i18n="cta2">Buy PRO License (1 Year)</span>
             </a>
-            <a class="btn" href="#pricing" data-i18n="hero.pricing">See pricing</a>
           </div>
 
-          <div class="note" data-i18n="hero.note">
-            The FREE TRIAL lets you test the software on your PC to see live extraction and exported data format.
-          </div>
+          <p class="note">
+            <span data-i18n="note1">PRO license is valid for <b>1 year</b> and removes limits on the amount of data you can extract.</span>
+            <img src="https://b2b-leads-extractor.github.io/b6.png" alt="B2B Leads Extractor Boxshot" />
+          </p>
         </div>
 
         <div class="side">
-          <div class="card boxshot">
-            <img src="https://b2b-leads-extractor.github.io/b2.png" alt="Screenshot" />
-          </div>
-          <div class="card">
+          <div class="card boxshot" aria-label="Boxshot">
+            <div class="sectionTitle" style="margin-bottom:10px;">
+              <h3 data-i18n="box1">Product Boxshot</h3>
+              <p data-i18n="box2">Professional desktop tool</p>
+            </div>
+            <img src="https://store.payproglobal.com/Content/files/152994/fastb2b.jpg" alt="B2B Leads Extractor Boxshot" />
             <div class="statGrid">
               <div class="stat">
-                <b data-i18n="hero.stat1.title">Fast extraction</b>
-                <span data-i18n="hero.stat1.desc">See results appear in real time while collection runs.</span>
+                <b data-i18n="st1">Desktop-first</b>
+                <span data-i18n="st1d">Work locally and keep your output under your control.</span>
               </div>
               <div class="stat">
-                <b data-i18n="hero.stat2.title">Large datasets</b>
-                <span data-i18n="hero.stat2.desc">Optimized for stability while processing thousands of records.</span>
+                <b data-i18n="st2">Fast workflow</b>
+                <span data-i18n="st2d">Search → extract → export. Minimal setup.</span>
+              </div>
+              <div class="stat">
+                <b data-i18n="st3">Large lists</b>
+                <span data-i18n="st3d">Designed to stay responsive even with thousands of leads.</span>
+              </div>
+              <div class="stat">
+                <b data-i18n="st4">Optional enrichment</b>
+                <span data-i18n="st4d">Email discovery from websites & contact pages (when available).</span>
+              </div>
+		     <div class="stat">
+                <b data-i18n="st5">Wordwide</b>
+                <span data-i18n="st5d">Capture potential customers / leads around the world.</span>
+              </div>
+		    <div class="stat">
+                <b data-i18n="st6">Low RAM/CPU usage</b>
+                <span data-i18n="st6d">It requires little RAM and does not overload the CPU.</span>
               </div>
             </div>
           </div>
@@ -402,106 +356,105 @@
 
       <section id="features">
         <div class="sectionTitle">
-          <h3 data-i18n="features.title">Key Features</h3>
-          <p data-i18n="features.subtitle">Practical tools for lead collection and export.</p>
+          <h3 data-i18n="feat">Key Features</h3>
+          <p data-i18n="featsub">Everything you need to build an export-ready B2B lead list.</p>
         </div>
 
         <div class="grid3">
           <div class="tile">
-            <h4 data-i18n="features.f1.title">Location-based search</h4>
-            <p data-i18n="features.f1.desc">Specify any location to extract businesses, or add multiple locations.</p>
+            <h4 data-i18n="f1">Search by category & location</h4>
+            <p data-i18n="f1d">Run targeted searches and collect business listings into a structured table.</p>
           </div>
           <div class="tile">
-            <h4 data-i18n="features.f2.title">Real-time results table</h4>
-            <p data-i18n="features.f2.desc">Watch leads appear while extraction runs, then review, filter, and export.</p>
+            <h4 data-i18n="f2">Real-time results table</h4>
+            <p data-i18n="f2d">Watch leads appear while extraction runs, then review, filter, and export.</p>
           </div>
           <div class="tile">
-            <h4 data-i18n="features.f3.title">Core business fields</h4>
-            <p data-i18n="features.f3.desc">Business name, address, phone, website, coordinates, and rating (when available).</p>
+            <h4 data-i18n="f3">Core business fields</h4>
+            <p data-i18n="f3d">Business name, address, phone, website, coordinates, and rating (when available).</p>
           </div>
           <div class="tile">
-            <h4 data-i18n="features.f4.title">Optional email discovery</h4>
-            <p data-i18n="features.f4.desc">Scans websites and contact pages to locate publicly listed email addresses.</p>
+            <h4 data-i18n="f4">Optional email discovery</h4>
+            <p data-i18n="f4d">Scans websites and contact pages to locate publicly listed email addresses.</p>
           </div>
           <div class="tile">
-            <h4 data-i18n="features.f5.title">Export-ready output</h4>
-            <p data-i18n="features.f5.desc">Save results to common formats for spreadsheets, CRMs, and analysis workflows.</p>
+            <h4 data-i18n="f5">Export-ready output</h4>
+            <p data-i18n="f5d">Save results to common formats for spreadsheets, CRMs, and analysis workflows.</p>
           </div>
           <div class="tile">
-            <h4 data-i18n="features.f6.title">Designed for large datasets</h4>
-            <p data-i18n="features.f6.desc">Optimized to remain usable and stable while collecting thousands of records.</p>
+            <h4 data-i18n="f6">Designed for large datasets</h4>
+            <p data-i18n="f6d">Optimized to remain usable and stable while collecting thousands of records.</p>
           </div>
         </div>
 
         <div style="margin-top:14px;" class="callout">
-          <b data-i18n="features.callout.title">Responsible use</b>
-          <small>
-            <span data-i18n="features.callout.text1">This software is intended to collect </span>
-            <b data-i18n="features.callout.text2">publicly available</b>
-            <span data-i18n="features.callout.text3"> business information. Users are responsible for complying with applicable laws, website terms, and privacy requirements.</span>
+          <b data-i18n="resp">Responsible use</b>
+          <small data-i18n="respd">
+            This software is intended to collect <b>publicly available</b> business information. Users are responsible for complying
+            with applicable laws, website terms, and privacy requirements.
           </small>
         </div>
       </section>
 
       <section id="screenshots">
         <div class="sectionTitle">
-          <h3 data-i18n="screenshots.title">Screenshots</h3>
-          <p data-i18n="screenshots.subtitle">Step-by-step usage examples. Click to enlarge!</p>
+          <h3 data-i18n="scr">Screenshots</h3>
+          <p data-i18n="scrsub">Step-by-step usage examples. Click to enlarge!</p>
         </div>
 
-        <div class="shot">
-          <img src="https://b2b-leads-extractor.github.io/b1.png"
-               data-full="https://b2b-leads-extractor.github.io/b1.png"
-               alt="Step 1" />
-          <div class="cap" data-i18n="screenshots.step1">Step 1 — Add location</div>
-        </div>
+   <div class="shot">
+  <img src="https://b2b-leads-extractor.github.io/b1.png"
+       data-full="https://b2b-leads-extractor.github.io/b1.png"
+       alt="Step 1" />
+  <div class="cap" data-i18n="cap1">Step 1 — Add location</div>
+</div>
 
-        <div class="shot">
-          <img src="https://b2b-leads-extractor.github.io/b2.png"
-               data-full="https://b2b-leads-extractor.github.io/b2.png"
-               alt="Step 2" />
-          <div class="cap" data-i18n="screenshots.step2">Step 2 — Results are displayed in real time</div>
-        </div>
+<div class="shot">
+  <img src="https://b2b-leads-extractor.github.io/b2.png"
+       data-full="https://b2b-leads-extractor.github.io/b2.png"
+       alt="Step 2" />
+  <div class="cap" data-i18n="cap2">Step 2 — Results are displayed in real time</div>
+</div>
 
-        <div class="shot">
-          <img src="https://b2b-leads-extractor.github.io/b3.png"
-               data-full="https://b2b-leads-extractor.github.io/b3.png"
-               alt="Step 3" />
-          <div class="cap" data-i18n="screenshots.step3">Step 3 — Follow the 4 steps to use the program</div>
-        </div>
+<div class="shot">
+  <img src="https://b2b-leads-extractor.github.io/b3.png"
+       data-full="https://b2b-leads-extractor.github.io/b3.png"
+       alt="Step 3" />
+  <div class="cap" data-i18n="cap3">Step 3 — Follow the 4 steps to use the program</div>
+</div>
       </section>
 
       <section id="pricing">
         <div class="sectionTitle">
-          <h3 data-i18n="pricing.title">FREE TRIAL & PRO License</h3>
-          <p data-i18n="pricing.subtitle">Choose the option that fits your workflow.</p>
+          <h3 data-i18n="price">FREE TRIAL & PRO License</h3>
+          <p data-i18n="pricesub">Choose the option that fits your workflow.</p>
         </div>
 
         <div class="pricing">
           <div class="plan">
-            <h4 data-i18n="pricing.trial.title">FREE TRIAL (Download)</h4>
-            <div class="tag" data-i18n="pricing.trial.tag">Try before you buy</div>
+            <h4 data-i18n="plan1">FREE TRIAL (Download)</h4>
+            <div class="tag" data-i18n="tag1">Try before you buy</div>
             <ul>
-              <li data-i18n="pricing.trial.li1">Install and test the software on your PC</li>
-              <li data-i18n="pricing.trial.li2">See real-time extraction and exported data format</li>
-              <li data-i18n="pricing.trial.li3">Some limitations may apply (you can edit this text)</li>
+              <li data-i18n="li1">Install and test the software on your PC</li>
+              <li data-i18n="li2">See real-time extraction and exported data format</li>
+              <li data-i18n="li3">Some limitations may apply (you can edit this text)</li>
             </ul>
             <div style="margin-top:14px;">
-              <a class="btn primary" href="https://github.com/b2b-leads-extractor/b2b-leads-extractor.github.io/releases/download/b2b-leads-extractor/B2BExtractor.exe" data-i18n="pricing.trial.btn">Download FREE TRIAL</a>
+              <a class="btn primary" href="https://github.com/b2b-leads-extractor/b2b-leads-extractor.github.io/releases/download/b2b-leads-extractor/B2BExtractor.exe"><span data-i18n="dlbtn">Download FREE TRIAL</span></a>
             </div>
           </div>
 
           <div class="plan">
-            <h4 data-i18n="pricing.pro.title">PRO License (1 Year)</h4>
-            <div class="tag" data-i18n="pricing.pro.tag">Unlimited data extraction</div>
+            <h4 data-i18n="plan2">PRO License (1 Year)</h4>
+            <div class="tag" data-i18n="tag2">Unlimited data extraction</div>
             <ul>
-              <li><span data-i18n="pricing.pro.li1a">Valid for </span><b data-i18n="pricing.pro.li1b">1 year</b></li>
-              <li><b data-i18n="pricing.pro.li2a">No limits</b><span data-i18n="pricing.pro.li2b"> on the amount of data you can extract</span></li>
-              <li data-i18n="pricing.pro.li3">Ideal for heavy usage and large lead lists</li>
+              <li data-i18n="li4">Valid for <b>1 year</b></li>
+              <li data-i18n="li5"><b>No limits</b> on the amount of data you can extract</li>
+              <li data-i18n="li6">Ideal for heavy usage and large lead lists</li>
             </ul>
             <div style="margin-top:14px;">
-              <a class="btn primary" href="https://store.payproglobal.com/checkout?products[1][id]=123452" target="_blank" rel="noopener" data-i18n="pricing.pro.btn">
-                Buy PRO License
+              <a class="btn primary" href="https://store.payproglobal.com/checkout?products[1][id]=123452" target="_blank" rel="noopener">
+                <span data-i18n="buybtn">Buy PRO License</span>
               </a>
             </div>
           </div>
@@ -510,36 +463,36 @@
 
       <section id="faq" class="faq">
         <div class="sectionTitle">
-          <h3 data-i18n="faq.title">FAQ</h3>
-          <p data-i18n="faq.subtitle">Quick answers to common questions.</p>
+          <h3 data-i18n="faqt">FAQ</h3>
+          <p data-i18n="faqsub">Quick answers to common questions.</p>
         </div>
 
         <details>
-          <summary data-i18n="faq.q1.q">What data can B2B Leads Extractor collect?</summary>
-          <p data-i18n="faq.q1.a">
+          <summary data-i18n="q1">What data can B2B Leads Extractor collect?</summary>
+          <p data-i18n="a1">
             It can collect business name, address, phone number, website, latitude/longitude, and rating when available.
             Available fields depend on what is publicly displayed by the source.
           </p>
         </details>
 
         <details>
-          <summary data-i18n="faq.q2.q">Does the PRO license remove extraction limits?</summary>
-          <p data-i18n="faq.q2.a">
+          <summary data-i18n="q2">Does the PRO license remove extraction limits?</summary>
+          <p data-i18n="a2">
             Yes. The PRO license (valid for 1 year) removes limits on the amount of data you can extract.
           </p>
         </details>
 
         <details>
-          <summary data-i18n="faq.q3.q">Can it find email addresses?</summary>
-          <p data-i18n="faq.q3.a">
+          <summary data-i18n="q3">Can it find email addresses?</summary>
+          <p data-i18n="a3">
             If enabled, the software can scan business websites and typical contact pages to locate publicly listed email addresses.
             Some websites do not publish emails or hide them behind forms.
           </p>
         </details>
 
         <details>
-          <summary data-i18n="faq.q4.q">Can I extract thousands of leads?</summary>
-          <p data-i18n="faq.q4.a">
+          <summary data-i18n="q4">Can I extract thousands of leads?</summary>
+          <p data-i18n="a4">
             Yes. The software is optimized to remain responsive while processing large lists and displaying results in the table.
           </p>
         </details>
@@ -547,735 +500,46 @@
 
       <section id="contact">
         <div class="sectionTitle">
-          <h3 data-i18n="contact.title">Support</h3>
-          <p data-i18n="contact.subtitle">Replace this section with your real support details.</p>
+          <h3 data-i18n="sup">Support</h3>
+          <p data-i18n="supsub">Replace this section with your real support details.</p>
         </div>
 
         <div class="grid2">
           <div class="tile">
-            <h4 data-i18n="contact.contact">Contact</h4>
+            <h4 data-i18n="cont">Contact</h4>
             <p>
-              <span style="color:var(--muted);" data-i18n="contact.email">Email:</span> <a href="mailto:support@estrattoredati.com">support@estrattoredati.com</a><br/>
-              <span style="color:var(--muted);" data-i18n="contact.website">Website:</span> <a href="https://www.estrattoredati.com">Estrattoredati.com</a>
+              <span style="color:var(--muted);" data-i18n="em">Email:</span> <a href="/cdn-cgi/l/email-protection#2841464e47684d5b5c5a495c5c475a4d4c495c41064b4745"><span class="__cf_email__" data-cfemail="c8a1a6aea788adbbbcbaa9bcbca7baadaca9bca1e6aba7a5">[email&#160;protected]</span></a><br/>
+              <span style="color:var(--muted);" data-i18n="web">Website:</span> <a href="https://www.estrattoredati.com">Estrattoredati.com</a>
             </p>
           </div>
           <div class="tile">
-            <h4 data-i18n="contact.notes">Notes</h4>
-            <p></p>
+            <h4 data-i18n="notes">Notes</h4>
+            <p>
+              
+            </p>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      <div><b>B2B Leads Extractor</b> — <span data-i18n="footer.text">Desktop lead collection software</span>.</div>
-      <div>© <span id="year"></span> Estrattoredati.com. <span data-i18n="footer.rights">All rights reserved</span>.</div>
-      <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+      <div><b>B2B Leads Extractor</b> — <span data-i18n="foot">Desktop lead collection software</span>.</div>
+      <div>© <span id="year"></span> Estrattoredati.com. <span data-i18n="rights">All rights reserved</span>.</div>
+      <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.getElementById('year').textContent = new Date().getFullYear();</script>
     </footer>
   </div>
-  
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div>
-      <img id="lightboxImg" alt="">
-      <div class="hint" data-i18n="lightbox.hint">Click to close • ESC</div>
-    </div>
+  <div>
+    <img id="lightboxImg" alt="">
+    <div class="hint" data-i18n="hint">Click to close • ESC</div>
   </div>
-
+</div>
+<script src="translations.js"></script>
 <script>
-// Translations object
-const translations = {
-  en: {
-    brand: "B2B Leads Extractor",
-    tagline: "Desktop lead collection software",
-    "nav.features": "Features",
-    "nav.screenshots": "Screenshots",
-    "nav.pricing": "Pricing",
-    "nav.faq": "FAQ",
-    "nav.contact": "Contact",
-    "hero.title": "Collect business leads from online directories",
-    "hero.subtitle": "B2B Leads Extractor is a desktop software to extract publicly available business information from map listings and directories, displayed in a fast, organized table you can export immediately.",
-    "hero.chip1": "Windows desktop",
-    "hero.chip2": "Real-time extraction",
-    "hero.chip3": "Export-ready",
-    "hero.chip4": "Optional email discovery",
-    "hero.download": "Download FREE TRIAL",
-    "hero.pricing": "See pricing",
-    "hero.note": "The FREE TRIAL lets you test the software on your PC to see live extraction and exported data format.",
-    "hero.stat1.title": "Fast extraction",
-    "hero.stat1.desc": "See results appear in real time while collection runs.",
-    "hero.stat2.title": "Large datasets",
-    "hero.stat2.desc": "Optimized for stability while processing thousands of records.",
-    "features.title": "Key Features",
-    "features.subtitle": "Practical tools for lead collection and export.",
-    "features.f1.title": "Location-based search",
-    "features.f1.desc": "Specify any location to extract businesses, or add multiple locations.",
-    "features.f2.title": "Real-time results table",
-    "features.f2.desc": "Watch leads appear while extraction runs, then review, filter, and export.",
-    "features.f3.title": "Core business fields",
-    "features.f3.desc": "Business name, address, phone, website, coordinates, and rating (when available).",
-    "features.f4.title": "Optional email discovery",
-    "features.f4.desc": "Scans websites and contact pages to locate publicly listed email addresses.",
-    "features.f5.title": "Export-ready output",
-    "features.f5.desc": "Save results to common formats for spreadsheets, CRMs, and analysis workflows.",
-    "features.f6.title": "Designed for large datasets",
-    "features.f6.desc": "Optimized to remain usable and stable while collecting thousands of records.",
-    "features.callout.title": "Responsible use",
-    "features.callout.text1": "This software is intended to collect ",
-    "features.callout.text2": "publicly available",
-    "features.callout.text3": " business information. Users are responsible for complying with applicable laws, website terms, and privacy requirements.",
-    "screenshots.title": "Screenshots",
-    "screenshots.subtitle": "Step-by-step usage examples. Click to enlarge!",
-    "screenshots.step1": "Step 1 — Add location",
-    "screenshots.step2": "Step 2 — Results are displayed in real time",
-    "screenshots.step3": "Step 3 — Follow the 4 steps to use the program",
-    "pricing.title": "FREE TRIAL & PRO License",
-    "pricing.subtitle": "Choose the option that fits your workflow.",
-    "pricing.trial.title": "FREE TRIAL (Download)",
-    "pricing.trial.tag": "Try before you buy",
-    "pricing.trial.li1": "Install and test the software on your PC",
-    "pricing.trial.li2": "See real-time extraction and exported data format",
-    "pricing.trial.li3": "Some limitations may apply (you can edit this text)",
-    "pricing.trial.btn": "Download FREE TRIAL",
-    "pricing.pro.title": "PRO License (1 Year)",
-    "pricing.pro.tag": "Unlimited data extraction",
-    "pricing.pro.li1a": "Valid for ",
-    "pricing.pro.li1b": "1 year",
-    "pricing.pro.li2a": "No limits",
-    "pricing.pro.li2b": " on the amount of data you can extract",
-    "pricing.pro.li3": "Ideal for heavy usage and large lead lists",
-    "pricing.pro.btn": "Buy PRO License",
-    "faq.title": "FAQ",
-    "faq.subtitle": "Quick answers to common questions.",
-    "faq.q1.q": "What data can B2B Leads Extractor collect?",
-    "faq.q1.a": "It can collect business name, address, phone number, website, latitude/longitude, and rating when available. Available fields depend on what is publicly displayed by the source.",
-    "faq.q2.q": "Does the PRO license remove extraction limits?",
-    "faq.q2.a": "Yes. The PRO license (valid for 1 year) removes limits on the amount of data you can extract.",
-    "faq.q3.q": "Can it find email addresses?",
-    "faq.q3.a": "If enabled, the software can scan business websites and typical contact pages to locate publicly listed email addresses. Some websites do not publish emails or hide them behind forms.",
-    "faq.q4.q": "Can I extract thousands of leads?",
-    "faq.q4.a": "Yes. The software is optimized to remain responsive while processing large lists and displaying results in the table.",
-    "contact.title": "Support",
-    "contact.subtitle": "Replace this section with your real support details.",
-    "contact.contact": "Contact",
-    "contact.email": "Email:",
-    "contact.website": "Website:",
-    "contact.notes": "Notes",
-    "footer.text": "Desktop lead collection software",
-    "footer.rights": "All rights reserved",
-    "lightbox.hint": "Click to close • ESC"
-  },
-  it: {
-    brand: "B2B Leads Extractor",
-    tagline: "Software desktop per raccolta lead",
-    "nav.features": "Caratteristiche",
-    "nav.screenshots": "Schermate",
-    "nav.pricing": "Prezzi",
-    "nav.faq": "FAQ",
-    "nav.contact": "Contatti",
-    "hero.title": "Raccogli lead aziendali da directory online",
-    "hero.subtitle": "B2B Leads Extractor è un software desktop per estrarre informazioni aziendali pubblicamente disponibili da mappe e directory, visualizzate in una tabella veloce e organizzata che puoi esportare immediatamente.",
-    "hero.chip1": "Desktop Windows",
-    "hero.chip2": "Estrazione in tempo reale",
-    "hero.chip3": "Pronto per l'esportazione",
-    "hero.chip4": "Ricerca email opzionale",
-    "hero.download": "Scarica PROVA GRATUITA",
-    "hero.pricing": "Vedi i prezzi",
-    "hero.note": "La PROVA GRATUITA ti permette di testare il software sul tuo PC per vedere l'estrazione dal vivo e il formato dei dati esportati.",
-    "hero.stat1.title": "Estrazione veloce",
-    "hero.stat1.desc": "Visualizza i risultati in tempo reale durante la raccolta.",
-    "hero.stat2.title": "Grandi dataset",
-    "hero.stat2.desc": "Ottimizzato per la stabilità durante l'elaborazione di migliaia di record.",
-    "features.title": "Caratteristiche Principali",
-    "features.subtitle": "Strumenti pratici per la raccolta e l'esportazione di lead.",
-    "features.f1.title": "Ricerca basata su località",
-    "features.f1.desc": "Specifica qualsiasi località per estrarre aziende, oppure aggiungi più località.",
-    "features.f2.title": "Tabella risultati in tempo reale",
-    "features.f2.desc": "Osserva i lead apparire durante l'estrazione, poi rivedi, filtra ed esporta.",
-    "features.f3.title": "Campi aziendali principali",
-    "features.f3.desc": "Nome azienda, indirizzo, telefono, sito web, coordinate e valutazione (quando disponibili).",
-    "features.f4.title": "Ricerca email opzionale",
-    "features.f4.desc": "Scansiona siti web e pagine di contatto per individuare indirizzi email pubblicamente elencati.",
-    "features.f5.title": "Output pronto per l'esportazione",
-    "features.f5.desc": "Salva i risultati in formati comuni per fogli di calcolo, CRM e flussi di analisi.",
-    "features.f6.title": "Progettato per grandi dataset",
-    "features.f6.desc": "Ottimizzato per rimanere utilizzabile e stabile durante la raccolta di migliaia di record.",
-    "features.callout.title": "Uso responsabile",
-    "features.callout.text1": "Questo software è destinato a raccogliere informazioni aziendali ",
-    "features.callout.text2": "pubblicamente disponibili",
-    "features.callout.text3": ". Gli utenti sono responsabili del rispetto delle leggi applicabili, dei termini dei siti web e dei requisiti di privacy.",
-    "screenshots.title": "Schermate",
-    "screenshots.subtitle": "Esempi di utilizzo passo dopo passo. Clicca per ingrandire!",
-    "screenshots.step1": "Passo 1 — Aggiungi località",
-    "screenshots.step2": "Passo 2 — I risultati sono visualizzati in tempo reale",
-    "screenshots.step3": "Passo 3 — Segui i 4 passaggi per utilizzare il programma",
-    "pricing.title": "PROVA GRATUITA e Licenza PRO",
-    "pricing.subtitle": "Scegli l'opzione adatta al tuo flusso di lavoro.",
-    "pricing.trial.title": "PROVA GRATUITA (Download)",
-    "pricing.trial.tag": "Prova prima di acquistare",
-    "pricing.trial.li1": "Installa e testa il software sul tuo PC",
-    "pricing.trial.li2": "Visualizza l'estrazione in tempo reale e il formato dei dati esportati",
-    "pricing.trial.li3": "Potrebbero essere applicate alcune limitazioni (puoi modificare questo testo)",
-    "pricing.trial.btn": "Scarica PROVA GRATUITA",
-    "pricing.pro.title": "Licenza PRO (1 Anno)",
-    "pricing.pro.tag": "Estrazione dati illimitata",
-    "pricing.pro.li1a": "Valida per ",
-    "pricing.pro.li1b": "1 anno",
-    "pricing.pro.li2a": "Nessun limite",
-    "pricing.pro.li2b": " sulla quantità di dati che puoi estrarre",
-    "pricing.pro.li3": "Ideale per uso intensivo e grandi liste di lead",
-    "pricing.pro.btn": "Acquista Licenza PRO",
-    "faq.title": "FAQ",
-    "faq.subtitle": "Risposte rapide alle domande comuni.",
-    "faq.q1.q": "Quali dati può raccogliere B2B Leads Extractor?",
-    "faq.q1.a": "Può raccogliere nome azienda, indirizzo, numero di telefono, sito web, latitudine/longitudine e valutazione quando disponibili. I campi disponibili dipendono da ciò che è pubblicamente visualizzato dalla fonte.",
-    "faq.q2.q": "La licenza PRO rimuove i limiti di estrazione?",
-    "faq.q2.a": "Sì. La licenza PRO (valida per 1 anno) rimuove i limiti sulla quantità di dati che puoi estrarre.",
-    "faq.q3.q": "Può trovare indirizzi email?",
-    "faq.q3.a": "Se abilitato, il software può scansionare i siti web aziendali e le tipiche pagine di contatto per individuare indirizzi email pubblicamente elencati. Alcuni siti web non pubblicano email o le nascondono dietro moduli.",
-    "faq.q4.q": "Posso estrarre migliaia di lead?",
-    "faq.q4.a": "Sì. Il software è ottimizzato per rimanere reattivo durante l'elaborazione di grandi liste e la visualizzazione dei risultati nella tabella.",
-    "contact.title": "Supporto",
-    "contact.subtitle": "Sostituisci questa sezione con i tuoi dettagli di supporto reali.",
-    "contact.contact": "Contatto",
-    "contact.email": "Email:",
-    "contact.website": "Sito web:",
-    "contact.notes": "Note",
-    "footer.text": "Software desktop per raccolta lead",
-    "footer.rights": "Tutti i diritti riservati",
-    "lightbox.hint": "Clicca per chiudere • ESC"
-  },
-  fr: {
-    brand: "B2B Leads Extractor",
-    tagline: "Logiciel de collecte de leads pour ordinateur",
-    "nav.features": "Fonctionnalités",
-    "nav.screenshots": "Captures d'écran",
-    "nav.pricing": "Tarifs",
-    "nav.faq": "FAQ",
-    "nav.contact": "Contact",
-    "hero.title": "Collectez des leads d'entreprises depuis les annuaires en ligne",
-    "hero.subtitle": "B2B Leads Extractor est un logiciel de bureau pour extraire des informations d'entreprises publiquement disponibles à partir de listes de cartes et d'annuaires, affichées dans un tableau rapide et organisé que vous pouvez exporter immédiatement.",
-    "hero.chip1": "Bureau Windows",
-    "hero.chip2": "Extraction en temps réel",
-    "hero.chip3": "Prêt à l'export",
-    "hero.chip4": "Découverte d'emails optionnelle",
-    "hero.download": "Télécharger ESSAI GRATUIT",
-    "hero.pricing": "Voir les tarifs",
-    "hero.note": "L'ESSAI GRATUIT vous permet de tester le logiciel sur votre PC pour voir l'extraction en direct et le format des données exportées.",
-    "hero.stat1.title": "Extraction rapide",
-    "hero.stat1.desc": "Voyez les résultats apparaître en temps réel pendant la collecte.",
-    "hero.stat2.title": "Grands ensembles de données",
-    "hero.stat2.desc": "Optimisé pour la stabilité lors du traitement de milliers d'enregistrements.",
-    "features.title": "Fonctionnalités Clés",
-    "features.subtitle": "Outils pratiques pour la collecte et l'export de leads.",
-    "features.f1.title": "Recherche basée sur la localisation",
-    "features.f1.desc": "Spécifiez n'importe quel emplacement pour extraire des entreprises, ou ajoutez plusieurs emplacements.",
-    "features.f2.title": "Tableau de résultats en temps réel",
-    "features.f2.desc": "Observez les leads apparaître pendant l'extraction, puis révisez, filtrez et exportez.",
-    "features.f3.title": "Champs d'entreprise principaux",
-    "features.f3.desc": "Nom de l'entreprise, adresse, téléphone, site web, coordonnées et note (lorsque disponible).",
-    "features.f4.title": "Découverte d'emails optionnelle",
-    "features.f4.desc": "Scanne les sites web et les pages de contact pour localiser les adresses email publiquement listées.",
-    "features.f5.title": "Sortie prête à l'export",
-    "features.f5.desc": "Enregistrez les résultats dans des formats courants pour les feuilles de calcul, CRM et flux d'analyse.",
-    "features.f6.title": "Conçu pour de grands ensembles de données",
-    "features.f6.desc": "Optimisé pour rester utilisable et stable lors de la collecte de milliers d'enregistrements.",
-    "features.callout.title": "Utilisation responsable",
-    "features.callout.text1": "Ce logiciel est destiné à collecter des informations d'entreprises ",
-    "features.callout.text2": "publiquement disponibles",
-    "features.callout.text3": ". Les utilisateurs sont responsables du respect des lois applicables, des conditions des sites web et des exigences de confidentialité.",
-    "screenshots.title": "Captures d'écran",
-    "screenshots.subtitle": "Exemples d'utilisation étape par étape. Cliquez pour agrandir!",
-    "screenshots.step1": "Étape 1 — Ajouter un emplacement",
-    "screenshots.step2": "Étape 2 — Les résultats sont affichés en temps réel",
-    "screenshots.step3": "Étape 3 — Suivez les 4 étapes pour utiliser le programme",
-    "pricing.title": "ESSAI GRATUIT et Licence PRO",
-    "pricing.subtitle": "Choisissez l'option qui correspond à votre flux de travail.",
-    "pricing.trial.title": "ESSAI GRATUIT (Téléchargement)",
-    "pricing.trial.tag": "Essayez avant d'acheter",
-    "pricing.trial.li1": "Installez et testez le logiciel sur votre PC",
-    "pricing.trial.li2": "Voyez l'extraction en temps réel et le format des données exportées",
-    "pricing.trial.li3": "Certaines limitations peuvent s'appliquer (vous pouvez modifier ce texte)",
-    "pricing.trial.btn": "Télécharger ESSAI GRATUIT",
-    "pricing.pro.title": "Licence PRO (1 An)",
-    "pricing.pro.tag": "Extraction de données illimitée",
-    "pricing.pro.li1a": "Valable ",
-    "pricing.pro.li1b": "1 an",
-    "pricing.pro.li2a": "Aucune limite",
-    "pricing.pro.li2b": " sur la quantité de données que vous pouvez extraire",
-    "pricing.pro.li3": "Idéal pour une utilisation intensive et de grandes listes de leads",
-    "pricing.pro.btn": "Acheter Licence PRO",
-    "faq.title": "FAQ",
-    "faq.subtitle": "Réponses rapides aux questions courantes.",
-    "faq.q1.q": "Quelles données B2B Leads Extractor peut-il collecter?",
-    "faq.q1.a": "Il peut collecter le nom de l'entreprise, l'adresse, le numéro de téléphone, le site web, la latitude/longitude et la note lorsque disponible. Les champs disponibles dépendent de ce qui est publiquement affiché par la source.",
-    "faq.q2.q": "La licence PRO supprime-t-elle les limites d'extraction?",
-    "faq.q2.a": "Oui. La licence PRO (valable 1 an) supprime les limites sur la quantité de données que vous pouvez extraire.",
-    "faq.q3.q": "Peut-il trouver des adresses email?",
-    "faq.q3.a": "S'il est activé, le logiciel peut scanner les sites web d'entreprises et les pages de contact typiques pour localiser les adresses email publiquement listées. Certains sites web ne publient pas d'emails ou les cachent derrière des formulaires.",
-    "faq.q4.q": "Puis-je extraire des milliers de leads?",
-    "faq.q4.a": "Oui. Le logiciel est optimisé pour rester réactif lors du traitement de grandes listes et de l'affichage des résultats dans le tableau.",
-    "contact.title": "Support",
-    "contact.subtitle": "Remplacez cette section par vos coordonnées de support réelles.",
-    "contact.contact": "Contact",
-    "contact.email": "Email:",
-    "contact.website": "Site web:",
-    "contact.notes": "Notes",
-    "footer.text": "Logiciel de collecte de leads pour ordinateur",
-    "footer.rights": "Tous droits réservés",
-    "lightbox.hint": "Cliquez pour fermer • ESC"
-  },
-  de: {
-    brand: "B2B Leads Extractor",
-    tagline: "Desktop-Software zur Lead-Erfassung",
-    "nav.features": "Funktionen",
-    "nav.screenshots": "Screenshots",
-    "nav.pricing": "Preise",
-    "nav.faq": "FAQ",
-    "nav.contact": "Kontakt",
-    "hero.title": "Erfassen Sie Geschäftskontakte aus Online-Verzeichnissen",
-    "hero.subtitle": "B2B Leads Extractor ist eine Desktop-Software zum Extrahieren öffentlich verfügbarer Geschäftsinformationen aus Karteneinträgen und Verzeichnissen, dargestellt in einer schnellen, organisierten Tabelle, die Sie sofort exportieren können.",
-    "hero.chip1": "Windows Desktop",
-    "hero.chip2": "Echtzeit-Extraktion",
-    "hero.chip3": "Exportbereit",
-    "hero.chip4": "Optionale E-Mail-Erkennung",
-    "hero.download": "KOSTENLOSE TESTVERSION herunterladen",
-    "hero.pricing": "Preise ansehen",
-    "hero.note": "Die KOSTENLOSE TESTVERSION ermöglicht es Ihnen, die Software auf Ihrem PC zu testen, um die Live-Extraktion und das exportierte Datenformat zu sehen.",
-    "hero.stat1.title": "Schnelle Extraktion",
-    "hero.stat1.desc": "Sehen Sie Ergebnisse in Echtzeit während der Erfassung erscheinen.",
-    "hero.stat2.title": "Große Datensätze",
-    "hero.stat2.desc": "Optimiert für Stabilität bei der Verarbeitung Tausender Datensätze.",
-    "features.title": "Hauptfunktionen",
-    "features.subtitle": "Praktische Tools zur Lead-Erfassung und zum Export.",
-    "features.f1.title": "Standortbasierte Suche",
-    "features.f1.desc": "Geben Sie einen beliebigen Standort an, um Unternehmen zu extrahieren, oder fügen Sie mehrere Standorte hinzu.",
-    "features.f2.title": "Echtzeit-Ergebnistabelle",
-    "features.f2.desc": "Beobachten Sie, wie Leads während der Extraktion erscheinen, überprüfen, filtern und exportieren Sie dann.",
-    "features.f3.title": "Hauptgeschäftsfelder",
-    "features.f3.desc": "Unternehmensname, Adresse, Telefon, Website, Koordinaten und Bewertung (wenn verfügbar).",
-    "features.f4.title": "Optionale E-Mail-Erkennung",
-    "features.f4.desc": "Scannt Websites und Kontaktseiten, um öffentlich gelistete E-Mail-Adressen zu finden.",
-    "features.f5.title": "Exportbereite Ausgabe",
-    "features.f5.desc": "Speichern Sie Ergebnisse in gängigen Formaten für Tabellenkalkulationen, CRMs und Analyse-Workflows.",
-    "features.f6.title": "Für große Datensätze entwickelt",
-    "features.f6.desc": "Optimiert, um beim Sammeln von Tausenden von Datensätzen nutzbar und stabil zu bleiben.",
-    "features.callout.title": "Verantwortungsvolle Nutzung",
-    "features.callout.text1": "Diese Software ist zum Sammeln ",
-    "features.callout.text2": "öffentlich verfügbarer",
-    "features.callout.text3": " Geschäftsinformationen bestimmt. Benutzer sind dafür verantwortlich, die geltenden Gesetze, Website-Bedingungen und Datenschutzanforderungen einzuhalten.",
-    "screenshots.title": "Screenshots",
-    "screenshots.subtitle": "Schritt-für-Schritt-Verwendungsbeispiele. Zum Vergrößern klicken!",
-    "screenshots.step1": "Schritt 1 — Standort hinzufügen",
-    "screenshots.step2": "Schritt 2 — Ergebnisse werden in Echtzeit angezeigt",
-    "screenshots.step3": "Schritt 3 — Befolgen Sie die 4 Schritte zur Verwendung des Programms",
-    "pricing.title": "KOSTENLOSE TESTVERSION & PRO-Lizenz",
-    "pricing.subtitle": "Wählen Sie die Option, die zu Ihrem Workflow passt.",
-    "pricing.trial.title": "KOSTENLOSE TESTVERSION (Download)",
-    "pricing.trial.tag": "Vor dem Kauf testen",
-    "pricing.trial.li1": "Installieren und testen Sie die Software auf Ihrem PC",
-    "pricing.trial.li2": "Sehen Sie die Echtzeit-Extraktion und das exportierte Datenformat",
-    "pricing.trial.li3": "Es können einige Einschränkungen gelten (Sie können diesen Text bearbeiten)",
-    "pricing.trial.btn": "KOSTENLOSE TESTVERSION herunterladen",
-    "pricing.pro.title": "PRO-Lizenz (1 Jahr)",
-    "pricing.pro.tag": "Unbegrenzte Datenextraktion",
-    "pricing.pro.li1a": "Gültig für ",
-    "pricing.pro.li1b": "1 Jahr",
-    "pricing.pro.li2a": "Keine Grenzen",
-    "pricing.pro.li2b": " bei der Menge der Daten, die Sie extrahieren können",
-    "pricing.pro.li3": "Ideal für intensive Nutzung und große Lead-Listen",
-    "pricing.pro.btn": "PRO-Lizenz kaufen",
-    "faq.title": "FAQ",
-    "faq.subtitle": "Schnelle Antworten auf häufige Fragen.",
-    "faq.q1.q": "Welche Daten kann B2B Leads Extractor sammeln?",
-    "faq.q1.a": "Es kann Unternehmensname, Adresse, Telefonnummer, Website, Breitengrad/Längengrad und Bewertung sammeln, wenn verfügbar. Die verfügbaren Felder hängen davon ab, was öffentlich von der Quelle angezeigt wird.",
-    "faq.q2.q": "Entfernt die PRO-Lizenz Extraktionslimits?",
-    "faq.q2.a": "Ja. Die PRO-Lizenz (gültig für 1 Jahr) entfernt Limits bei der Menge der Daten, die Sie extrahieren können.",
-    "faq.q3.q": "Kann es E-Mail-Adressen finden?",
-    "faq.q3.a": "Wenn aktiviert, kann die Software Unternehmens-Websites und typische Kontaktseiten scannen, um öffentlich gelistete E-Mail-Adressen zu finden. Einige Websites veröffentlichen keine E-Mails oder verstecken sie hinter Formularen.",
-    "faq.q4.q": "Kann ich Tausende von Leads extrahieren?",
-    "faq.q4.a": "Ja. Die Software ist optimiert, um bei der Verarbeitung großer Listen und der Anzeige von Ergebnissen in der Tabelle reaktionsfähig zu bleiben.",
-    "contact.title": "Support",
-    "contact.subtitle": "Ersetzen Sie diesen Abschnitt durch Ihre echten Support-Details.",
-    "contact.contact": "Kontakt",
-    "contact.email": "E-Mail:",
-    "contact.website": "Website:",
-    "contact.notes": "Notizen",
-    "footer.text": "Desktop-Software zur Lead-Erfassung",
-    "footer.rights": "Alle Rechte vorbehalten",
-    "lightbox.hint": "Zum Schließen klicken • ESC"
-  },
-  pt: {
-    brand: "B2B Leads Extractor",
-    tagline: "Software de coleta de leads para desktop",
-    "nav.features": "Recursos",
-    "nav.screenshots": "Capturas de tela",
-    "nav.pricing": "Preços",
-    "nav.faq": "FAQ",
-    "nav.contact": "Contato",
-    "hero.title": "Colete leads empresariais de diretórios online",
-    "hero.subtitle": "B2B Leads Extractor é um software de desktop para extrair informações empresariais publicamente disponíveis de listagens de mapas e diretórios, exibidas em uma tabela rápida e organizada que você pode exportar imediatamente.",
-    "hero.chip1": "Desktop Windows",
-    "hero.chip2": "Extração em tempo real",
-    "hero.chip3": "Pronto para exportação",
-    "hero.chip4": "Descoberta de email opcional",
-    "hero.download": "Baixar TESTE GRATUITO",
-    "hero.pricing": "Ver preços",
-    "hero.note": "O TESTE GRATUITO permite que você teste o software no seu PC para ver a extração ao vivo e o formato dos dados exportados.",
-    "hero.stat1.title": "Extração rápida",
-    "hero.stat1.desc": "Veja os resultados aparecerem em tempo real durante a coleta.",
-    "hero.stat2.title": "Grandes conjuntos de dados",
-    "hero.stat2.desc": "Otimizado para estabilidade ao processar milhares de registros.",
-    "features.title": "Recursos Principais",
-    "features.subtitle": "Ferramentas práticas para coleta e exportação de leads.",
-    "features.f1.title": "Pesquisa baseada em localização",
-    "features.f1.desc": "Especifique qualquer localização para extrair empresas, ou adicione várias localizações.",
-    "features.f2.title": "Tabela de resultados em tempo real",
-    "features.f2.desc": "Observe os leads aparecerem durante a extração, depois revise, filtre e exporte.",
-    "features.f3.title": "Campos empresariais principais",
-    "features.f3.desc": "Nome da empresa, endereço, telefone, website, coordenadas e classificação (quando disponível).",
-    "features.f4.title": "Descoberta de email opcional",
-    "features.f4.desc": "Escaneia sites e páginas de contato para localizar endereços de email publicamente listados.",
-    "features.f5.title": "Saída pronta para exportação",
-    "features.f5.desc": "Salve resultados em formatos comuns para planilhas, CRMs e fluxos de análise.",
-    "features.f6.title": "Projetado para grandes conjuntos de dados",
-    "features.f6.desc": "Otimizado para permanecer utilizável e estável ao coletar milhares de registros.",
-    "features.callout.title": "Uso responsável",
-    "features.callout.text1": "Este software destina-se a coletar informações empresariais ",
-    "features.callout.text2": "publicamente disponíveis",
-    "features.callout.text3": ". Os usuários são responsáveis por cumprir as leis aplicáveis, termos de sites e requisitos de privacidade.",
-    "screenshots.title": "Capturas de tela",
-    "screenshots.subtitle": "Exemplos de uso passo a passo. Clique para ampliar!",
-    "screenshots.step1": "Passo 1 — Adicionar localização",
-    "screenshots.step2": "Passo 2 — Os resultados são exibidos em tempo real",
-    "screenshots.step3": "Passo 3 — Siga os 4 passos para usar o programa",
-    "pricing.title": "TESTE GRATUITO e Licença PRO",
-    "pricing.subtitle": "Escolha a opção que se adapta ao seu fluxo de trabalho.",
-    "pricing.trial.title": "TESTE GRATUITO (Download)",
-    "pricing.trial.tag": "Experimente antes de comprar",
-    "pricing.trial.li1": "Instale e teste o software no seu PC",
-    "pricing.trial.li2": "Veja a extração em tempo real e o formato dos dados exportados",
-    "pricing.trial.li3": "Algumas limitações podem se aplicar (você pode editar este texto)",
-    "pricing.trial.btn": "Baixar TESTE GRATUITO",
-    "pricing.pro.title": "Licença PRO (1 Ano)",
-    "pricing.pro.tag": "Extração de dados ilimitada",
-    "pricing.pro.li1a": "Válida por ",
-    "pricing.pro.li1b": "1 ano",
-    "pricing.pro.li2a": "Sem limites",
-    "pricing.pro.li2b": " na quantidade de dados que você pode extrair",
-    "pricing.pro.li3": "Ideal para uso intensivo e grandes listas de leads",
-    "pricing.pro.btn": "Comprar Licença PRO",
-    "faq.title": "FAQ",
-    "faq.subtitle": "Respostas rápidas para perguntas comuns.",
-    "faq.q1.q": "Quais dados o B2B Leads Extractor pode coletar?",
-    "faq.q1.a": "Pode coletar nome da empresa, endereço, número de telefone, website, latitude/longitude e classificação quando disponível. Os campos disponíveis dependem do que é publicamente exibido pela fonte.",
-    "faq.q2.q": "A licença PRO remove limites de extração?",
-    "faq.q2.a": "Sim. A licença PRO (válida por 1 ano) remove limites na quantidade de dados que você pode extrair.",
-    "faq.q3.q": "Pode encontrar endereços de email?",
-    "faq.q3.a": "Se ativado, o software pode escanear sites empresariais e páginas de contato típicas para localizar endereços de email publicamente listados. Alguns sites não publicam emails ou os escondem atrás de formulários.",
-    "faq.q4.q": "Posso extrair milhares de leads?",
-    "faq.q4.a": "Sim. O software é otimizado para permanecer responsivo ao processar grandes listas e exibir resultados na tabela.",
-    "contact.title": "Suporte",
-    "contact.subtitle": "Substitua esta seção pelos seus detalhes de suporte reais.",
-    "contact.contact": "Contato",
-    "contact.email": "Email:",
-    "contact.website": "Website:",
-    "contact.notes": "Notas",
-    "footer.text": "Software de coleta de leads para desktop",
-    "footer.rights": "Todos os direitos reservados",
-    "lightbox.hint": "Clique para fechar • ESC"
-  },
-  es: {
-    brand: "B2B Leads Extractor",
-    tagline: "Software de escritorio para recopilación de leads",
-    "nav.features": "Características",
-    "nav.screenshots": "Capturas de pantalla",
-    "nav.pricing": "Precios",
-    "nav.faq": "FAQ",
-    "nav.contact": "Contacto",
-    "hero.title": "Recopile leads empresariales de directorios en línea",
-    "hero.subtitle": "B2B Leads Extractor es un software de escritorio para extraer información empresarial públicamente disponible de listados de mapas y directorios, mostrada en una tabla rápida y organizada que puede exportar inmediatamente.",
-    "hero.chip1": "Escritorio Windows",
-    "hero.chip2": "Extracción en tiempo real",
-    "hero.chip3": "Listo para exportar",
-    "hero.chip4": "Descubrimiento de email opcional",
-    "hero.download": "Descargar PRUEBA GRATUITA",
-    "hero.pricing": "Ver precios",
-    "hero.note": "La PRUEBA GRATUITA le permite probar el software en su PC para ver la extracción en vivo y el formato de datos exportados.",
-    "hero.stat1.title": "Extracción rápida",
-    "hero.stat1.desc": "Vea los resultados aparecer en tiempo real durante la recopilación.",
-    "hero.stat2.title": "Grandes conjuntos de datos",
-    "hero.stat2.desc": "Optimizado para estabilidad al procesar miles de registros.",
-    "features.title": "Características Clave",
-    "features.subtitle": "Herramientas prácticas para recopilación y exportación de leads.",
-    "features.f1.title": "Búsqueda basada en ubicación",
-    "features.f1.desc": "Especifique cualquier ubicación para extraer empresas, o agregue múltiples ubicaciones.",
-    "features.f2.title": "Tabla de resultados en tiempo real",
-    "features.f2.desc": "Observe cómo aparecen los leads durante la extracción, luego revise, filtre y exporte.",
-    "features.f3.title": "Campos empresariales principales",
-    "features.f3.desc": "Nombre de empresa, dirección, teléfono, sitio web, coordenadas y calificación (cuando esté disponible).",
-    "features.f4.title": "Descubrimiento de email opcional",
-    "features.f4.desc": "Escanea sitios web y páginas de contacto para localizar direcciones de correo electrónico listadas públicamente.",
-    "features.f5.title": "Salida lista para exportar",
-    "features.f5.desc": "Guarde resultados en formatos comunes para hojas de cálculo, CRMs y flujos de análisis.",
-    "features.f6.title": "Diseñado para grandes conjuntos de datos",
-    "features.f6.desc": "Optimizado para permanecer utilizable y estable al recopilar miles de registros.",
-    "features.callout.title": "Uso responsable",
-    "features.callout.text1": "Este software está destinado a recopilar información empresarial ",
-    "features.callout.text2": "públicamente disponible",
-    "features.callout.text3": ". Los usuarios son responsables de cumplir con las leyes aplicables, términos de sitios web y requisitos de privacidad.",
-    "screenshots.title": "Capturas de pantalla",
-    "screenshots.subtitle": "Ejemplos de uso paso a paso. ¡Haga clic para ampliar!",
-    "screenshots.step1": "Paso 1 — Agregar ubicación",
-    "screenshots.step2": "Paso 2 — Los resultados se muestran en tiempo real",
-    "screenshots.step3": "Paso 3 — Siga los 4 pasos para usar el programa",
-    "pricing.title": "PRUEBA GRATUITA y Licencia PRO",
-    "pricing.subtitle": "Elija la opción que se adapte a su flujo de trabajo.",
-    "pricing.trial.title": "PRUEBA GRATUITA (Descarga)",
-    "pricing.trial.tag": "Pruebe antes de comprar",
-    "pricing.trial.li1": "Instale y pruebe el software en su PC",
-    "pricing.trial.li2": "Vea la extracción en tiempo real y el formato de datos exportados",
-    "pricing.trial.li3": "Pueden aplicarse algunas limitaciones (puede editar este texto)",
-    "pricing.trial.btn": "Descargar PRUEBA GRATUITA",
-    "pricing.pro.title": "Licencia PRO (1 Año)",
-    "pricing.pro.tag": "Extracción de datos ilimitada",
-    "pricing.pro.li1a": "Válida por ",
-    "pricing.pro.li1b": "1 año",
-    "pricing.pro.li2a": "Sin límites",
-    "pricing.pro.li2b": " en la cantidad de datos que puede extraer",
-    "pricing.pro.li3": "Ideal para uso intensivo y grandes listas de leads",
-    "pricing.pro.btn": "Comprar Licencia PRO",
-    "faq.title": "FAQ",
-    "faq.subtitle": "Respuestas rápidas a preguntas comunes.",
-    "faq.q1.q": "¿Qué datos puede recopilar B2B Leads Extractor?",
-    "faq.q1.a": "Puede recopilar nombre de empresa, dirección, número de teléfono, sitio web, latitud/longitud y calificación cuando esté disponible. Los campos disponibles dependen de lo que se muestre públicamente por la fuente.",
-    "faq.q2.q": "¿La licencia PRO elimina los límites de extracción?",
-    "faq.q2.a": "Sí. La licencia PRO (válida por 1 año) elimina los límites en la cantidad de datos que puede extraer.",
-    "faq.q3.q": "¿Puede encontrar direcciones de correo electrónico?",
-    "faq.q3.a": "Si está habilitado, el software puede escanear sitios web empresariales y páginas de contacto típicas para localizar direcciones de correo electrónico listadas públicamente. Algunos sitios web no publican correos electrónicos o los ocultan detrás de formularios.",
-    "faq.q4.q": "¿Puedo extraer miles de leads?",
-    "faq.q4.a": "Sí. El software está optimizado para permanecer receptivo al procesar grandes listas y mostrar resultados en la tabla.",
-    "contact.title": "Soporte",
-    "contact.subtitle": "Reemplace esta sección con sus detalles de soporte reales.",
-    "contact.contact": "Contacto",
-    "contact.email": "Email:",
-    "contact.website": "Sitio web:",
-    "contact.notes": "Notas",
-    "footer.text": "Software de escritorio para recopilación de leads",
-    "footer.rights": "Todos los derechos reservados",
-    "lightbox.hint": "Haga clic para cerrar • ESC"
-  },
-  zh: {
-    brand: "B2B Leads Extractor",
-    tagline: "桌面潜在客户收集软件",
-    "nav.features": "功能",
-    "nav.screenshots": "截图",
-    "nav.pricing": "价格",
-    "nav.faq": "常见问题",
-    "nav.contact": "联系方式",
-    "hero.title": "从在线目录收集企业潜在客户",
-    "hero.subtitle": "B2B Leads Extractor 是一款桌面软件，用于从地图列表和目录中提取公开可用的企业信息，以快速、有序的表格形式显示，您可以立即导出。",
-    "hero.chip1": "Windows 桌面",
-    "hero.chip2": "实时提取",
-    "hero.chip3": "可导出",
-    "hero.chip4": "可选电子邮件发现",
-    "hero.download": "下载免费试用版",
-    "hero.pricing": "查看价格",
-    "hero.note": "免费试用版让您在 PC 上测试软件，以查看实时提取和导出数据格式。",
-    "hero.stat1.title": "快速提取",
-    "hero.stat1.desc": "在收集过程中实时查看结果。",
-    "hero.stat2.title": "大数据集",
-    "hero.stat2.desc": "优化以在处理数千条记录时保持稳定。",
-    "features.title": "主要功能",
-    "features.subtitle": "用于潜在客户收集和导出的实用工具。",
-    "features.f1.title": "基于位置的搜索",
-    "features.f1.desc": "指定任何位置以提取企业，或添加多个位置。",
-    "features.f2.title": "实时结果表",
-    "features.f2.desc": "在提取运行时观察潜在客户出现，然后查看、筛选和导出。",
-    "features.f3.title": "核心业务字段",
-    "features.f3.desc": "企业名称、地址、电话、网站、坐标和评分（如有）。",
-    "features.f4.title": "可选电子邮件发现",
-    "features.f4.desc": "扫描网站和联系页面以查找公开列出的电子邮件地址。",
-    "features.f5.title": "可导出输出",
-    "features.f5.desc": "将结果保存为常见格式，用于电子表格、CRM 和分析工作流程。",
-    "features.f6.title": "专为大数据集设计",
-    "features.f6.desc": "优化以在收集数千条记录时保持可用和稳定。",
-    "features.callout.title": "负责任使用",
-    "features.callout.text1": "本软件旨在收集",
-    "features.callout.text2": "公开可用的",
-    "features.callout.text3": "企业信息。用户有责任遵守适用法律、网站条款和隐私要求。",
-    "screenshots.title": "截图",
-    "screenshots.subtitle": "分步使用示例。点击放大！",
-    "screenshots.step1": "步骤 1 — 添加位置",
-    "screenshots.step2": "步骤 2 — 结果实时显示",
-    "screenshots.step3": "步骤 3 — 按照 4 个步骤使用程序",
-    "pricing.title": "免费试用版和专业版许可证",
-    "pricing.subtitle": "选择适合您工作流程的选项。",
-    "pricing.trial.title": "免费试用版（下载）",
-    "pricing.trial.tag": "购买前试用",
-    "pricing.trial.li1": "在您的 PC 上安装和测试软件",
-    "pricing.trial.li2": "查看实时提取和导出数据格式",
-    "pricing.trial.li3": "可能适用某些限制（您可以编辑此文本）",
-    "pricing.trial.btn": "下载免费试用版",
-    "pricing.pro.title": "专业版许可证（1 年）",
-    "pricing.pro.tag": "无限数据提取",
-    "pricing.pro.li1a": "有效期 ",
-    "pricing.pro.li1b": "1 年",
-    "pricing.pro.li2a": "无限制",
-    "pricing.pro.li2b": "您可以提取的数据量",
-    "pricing.pro.li3": "适合大量使用和大型潜在客户列表",
-    "pricing.pro.btn": "购买专业版许可证",
-    "faq.title": "常见问题",
-    "faq.subtitle": "常见问题的快速解答。",
-    "faq.q1.q": "B2B Leads Extractor 可以收集哪些数据？",
-    "faq.q1.a": "可以收集企业名称、地址、电话号码、网站、纬度/经度和评分（如有）。可用字段取决于源公开显示的内容。",
-    "faq.q2.q": "专业版许可证是否取消提取限制？",
-    "faq.q2.a": "是的。专业版许可证（有效期 1 年）取消了您可以提取的数据量的限制。",
-    "faq.q3.q": "可以找到电子邮件地址吗？",
-    "faq.q3.a": "如果启用，软件可以扫描企业网站和典型的联系页面以查找公开列出的电子邮件地址。一些网站不发布电子邮件或将其隐藏在表单后面。",
-    "faq.q4.q": "我可以提取数千个潜在客户吗？",
-    "faq.q4.a": "是的。该软件经过优化，在处理大型列表并在表格中显示结果时保持响应。",
-    "contact.title": "支持",
-    "contact.subtitle": "用您的真实支持详细信息替换此部分。",
-    "contact.contact": "联系方式",
-    "contact.email": "电子邮件：",
-    "contact.website": "网站：",
-    "contact.notes": "备注",
-    "footer.text": "桌面潜在客户收集软件",
-    "footer.rights": "版权所有",
-    "lightbox.hint": "点击关闭 • ESC"
-  }
-};
-
-// Language configurations
-const langConfig = {
-  en: { flag: '🇬🇧', name: 'English' },
-  it: { flag: '🇮🇹', name: 'Italiano' },
-  fr: { flag: '🇫🇷', name: 'Français' },
-  de: { flag: '🇩🇪', name: 'Deutsch' },
-  pt: { flag: '🇵🇹', name: 'Português' },
-  es: { flag: '🇪🇸', name: 'Español' },
-  zh: { flag: '🇨🇳', name: '简体中文' }
-};
-
-// Get browser language
-function getBrowserLanguage() {
-  const lang = navigator.language || navigator.userLanguage;
-  const shortLang = lang.split('-')[0];
-  return translations[shortLang] ? shortLang : 'en';
-}
-
-// Set language
-function setLanguage(lang) {
-  if (!translations[lang]) lang = 'en';
-  
-  document.documentElement.lang = lang;
-  localStorage.setItem('preferredLanguage', lang);
-  
-  // Update all translatable elements
-  document.querySelectorAll('[data-i18n]').forEach(element => {
-    const key = element.getAttribute('data-i18n');
-    if (translations[lang][key]) {
-      if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-        element.placeholder = translations[lang][key];
-      } else {
-        element.textContent = translations[lang][key];
-      }
-    }
-  });
-  
-  // Update language selector
-  const config = langConfig[lang];
-  document.getElementById('currentFlag').textContent = config.flag;
-  document.getElementById('currentLang').textContent = config.name;
-  
-  // Update active state
-  document.querySelectorAll('.lang-option').forEach(opt => {
-    opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
-  });
-  
-  // Update page title and meta
-  const titles = {
-    en: 'B2B Leads Extractor — Desktop Lead Collection Software',
-    it: 'B2B Leads Extractor — Software Desktop per Raccolta Lead',
-    fr: 'B2B Leads Extractor — Logiciel de Collecte de Leads pour Ordinateur',
-    de: 'B2B Leads Extractor — Desktop-Software zur Lead-Erfassung',
-    pt: 'B2B Leads Extractor — Software de Coleta de Leads para Desktop',
-    es: 'B2B Leads Extractor — Software de Escritorio para Recopilación de Leads',
-    zh: 'B2B Leads Extractor — 桌面潜在客户收集软件'
-  };
-  document.title = titles[lang];
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-  // Set initial language
-  const savedLang = localStorage.getItem('preferredLanguage');
-  const initialLang = savedLang || getBrowserLanguage();
-  setLanguage(initialLang);
-  
-  // Language selector toggle
-  const langBtn = document.getElementById('langBtn');
-  const langSelector = document.querySelector('.lang-selector');
-  const langDropdown = document.getElementById('langDropdown');
-  
-  langBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    langSelector.classList.toggle('open');
-  });
-  
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!langSelector.contains(e.target)) {
-      langSelector.classList.remove('open');
-    }
-  });
-  
-  // Language option click
-  document.querySelectorAll('.lang-option').forEach(option => {
-    option.addEventListener('click', () => {
-      const lang = option.getAttribute('data-lang');
-      setLanguage(lang);
-      langSelector.classList.remove('open');
-    });
-  });
-  
-  // Lightbox functionality
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightboxImg');
-  
-  function openLightbox(src, alt) {
-    lbImg.src = src;
-    lbImg.alt = alt || '';
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function closeLightbox() {
-    lb.classList.remove('open');
-    lb.setAttribute('aria-hidden', 'true');
-    lbImg.src = '';
-    document.body.style.overflow = '';
-  }
-  
-  document.addEventListener('click', (e) => {
-    const img = e.target.closest('.shot img');
-    if (img) {
-      const full = img.getAttribute('data-full') || img.src;
-      openLightbox(full, img.alt);
-      return;
-    }
-    if (e.target === lb || e.target === lbImg) {
-      closeLightbox();
-    }
-  });
-  
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lb.classList.contains('open')) {
-      closeLightbox();
-    }
-  });
-});
+const lc={en:{flag:'🇬🇧',name:'EN'},it:{flag:'🇮🇹',name:'IT'},fr:{flag:'🇫🇷',name:'FR'},de:{flag:'🇩🇪',name:'DE'},pt:{flag:'🇵🇹',name:'PT'},es:{flag:'🇪🇸',name:'ES'},zh:{flag:'🇨🇳',name:'中文'}};
+function getBrowserLang(){const l=(navigator.language||navigator.userLanguage).split('-')[0];return tr[l]?l:'en';}
+function setLang(l){if(!tr[l])l='en';document.documentElement.lang=l;localStorage.setItem('lang',l);document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.getAttribute('data-i18n');if(tr[l][k])e.innerHTML=tr[l][k];});document.getElementById('currentFlag').textContent=lc[l].flag;document.getElementById('currentLang').textContent=lc[l].name;document.querySelectorAll('.lang-option').forEach(o=>o.classList.toggle('active',o.getAttribute('data-lang')===l));}
+document.addEventListener('DOMContentLoaded',()=>{setLang(localStorage.getItem('lang')||getBrowserLang());const lb=document.getElementById('langBtn'),ls=document.querySelector('.lang-selector');lb.addEventListener('click',e=>{e.stopPropagation();ls.classList.toggle('open');});document.addEventListener('click',e=>{if(!ls.contains(e.target))ls.classList.remove('open');});document.querySelectorAll('.lang-option').forEach(o=>{o.addEventListener('click',()=>{setLang(o.getAttribute('data-lang'));ls.classList.remove('open');});});const lightbox=document.getElementById('lightbox'),lbImg=document.getElementById('lightboxImg');function openLb(src,alt){lbImg.src=src;lbImg.alt=alt||'';lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}function closeLb(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');lbImg.src='';document.body.style.overflow='';}document.addEventListener('click',e=>{const img=e.target.closest('.shot img');if(img){openLb(img.getAttribute('data-full')||img.src,img.alt);return;}if(e.target===lightbox||e.target===lbImg)closeLb();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lightbox.classList.contains('open'))closeLb();});});
 </script>
 </body>
 </html>
